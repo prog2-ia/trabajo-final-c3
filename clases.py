@@ -1,5 +1,5 @@
 class Vehiculo:
-    def __init__(self,matricula,marca,modelo,color,deposito,tipo):
+    def __init__(self,matricula,marca,modelo,color,deposito,tipo,consumo):
         self.matricula=matricula
         self.marca=marca
         self.modelo=modelo
@@ -9,6 +9,13 @@ class Vehiculo:
         self.deposito=deposito
         self.tipo=tipo
         self.averías=[]
+        self.consumo=consumo
+
+    def __str__(self):
+        return f"{self.marca} {self.modelo} ({self.matricula}) - KM: {self.km_recorridos} - Combustible: {self.gasolina}/{self.deposito}L"
+
+    def __repr__(self):
+        return f"Vehiculo(matricula='{self.matricula}', marca='{self.marca}', modelo='{self.modelo}')"
 
     def suma_km(self,km):
         self.km_recorridos+=km
@@ -47,3 +54,5 @@ class Trabajador:
     def aumento(self,dinero):
         self.sueldo+=dinero
         print('El sueldo de ',self,' ha aumentado a ',self.sueldo,'€.')
+
+class
