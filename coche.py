@@ -12,6 +12,7 @@ class Vehiculo:
     def suma_km(self,km):
         self.km_recorridos+=km
 
+
     def hechar_gasolina(self,gasolina):
         if self.gasolina+gasolina<=self.deposito:
             self.gasolina+=gasolina
