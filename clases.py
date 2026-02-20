@@ -1,5 +1,6 @@
 class Vehiculo:
-    def __init__(self,matricula,marca,modelo,color,deposito,tipo):
+    numero_vehiculos=0
+    def __init__(self,matricula,marca,modelo,color,deposito,tipo,precio_d):
         self.matricula=matricula
         self.marca=marca
         self.modelo=modelo
@@ -9,6 +10,8 @@ class Vehiculo:
         self.deposito=deposito
         self.tipo=tipo
         self.averías=[]
+        self.precio_d=precio_d
+        type(self).numero_vehiculos+=1
 
     def suma_km(self,km):
         self.km_recorridos+=km
@@ -29,12 +32,29 @@ class Vehiculo:
             print(i)
 
 
-class Persona:
-    def __init__(self,DNI,nombre,apellido,coche):
+class Cliente:
+    def __init__(self,DNI,nombre,apellido):
         self.dni=DNI
         self.nombre=nombre
         self.apellido=apellido
-        self.coche=coche
+        self.vehiculos=[]
+
+
+class Alquiler:
+    def __init__(self,cliente,vehiculo,dias_alquiler,trabajador):
+        self.cliente=cliente
+        self.vehiculo=vehiculo
+        self.trabajador=trabajador
+        self.dias_alquiler=dias_alquiler
+        self.cliente.vehiculos.append(vehiculo)
+
+    def precio_alquiler(self):
+        precio=(self.vehiculo.precio_d)*self.dias_alquiler
+        return f'El precio es {precio}€'
+
+
+
+
 
 class Trabajador:
     def __init__(self,dni,nombre,apellidos,cargo,sueldo):
