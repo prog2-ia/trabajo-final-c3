@@ -21,14 +21,14 @@ class Vehiculo:
             self.gasolina=self.deposito
 
 
-class Persona
+class Persona:
     def __init__(self,DNI,nombre,apellido,coche):
         self.dni=DNI
         self.nombre=nombre
         self.apellido=apellido
         self.coche=coche
 
-class Trabajador
+class Trabajador:
     def __init__(self,dni,nombre,apellidos,cargo,sueldo):
         self.dni=dni
         self.apellidos=apellidos

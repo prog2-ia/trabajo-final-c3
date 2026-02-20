@@ -4,4 +4,3 @@ class Persona
         self.nombre=nombre
         self.apellido=apellido
         self.coche=coche
-print("3t723ougasfjlkgjasgfjhgasjkukgfjahsbdjhas")
