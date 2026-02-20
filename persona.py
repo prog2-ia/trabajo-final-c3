@@ -4,4 +4,3 @@ class Persona
         self.nombre=nombre
         self.apellido=apellido
         self.coche=coche
-
