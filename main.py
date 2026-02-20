@@ -5,3 +5,9 @@ if __name__=='__main__':
 
     coche1.hechar_gasolina(30)
     print(coche1.gasolina)
+
+    persona1=cl.Persona('72859472E','Alvaro','Castillo','no')
+    persona2 = cl.Persona('23890754U', 'Samuel', 'Ferrández', coche1)
+    print(persona2.coche.marca)
+
+    coche2=cl.Vehiculo('1234ZKI','Mazda','R8','Rojo',60,'electrico')
