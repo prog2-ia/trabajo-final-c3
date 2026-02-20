@@ -12,4 +12,4 @@ if __name__=='__main__':
 
     coche2=cl.Vehiculo('1234ZKI','Mazda','R8','Rojo',60,'eléctrico')
     coche2.echar_gasolina(20)
-    print(coche2.averías)
+    coche2.mostrar_averias()
