@@ -8,6 +8,7 @@ class Vehiculo:
         self.gasolina=0
         self.deposito=deposito
         self.tipo=tipo
+        self.averías=[]
 
     def suma_km(self,km):
         self.km_recorridos+=km
@@ -15,8 +16,8 @@ class Vehiculo:
 
     def echar_gasolina(self,gasolina):
         if self.tipo=='eléctrico':
-            print('El coche ha explotado')
-            del self
+            print('Has intentado echar gasolina en un coche eléctrico, tu motor ha sufrido una explosión.')
+            self.averías.append('Explosion de motor por combustible')
         else:
             if self.gasolina+gasolina<=self.deposito:
                 self.gasolina+=gasolina
