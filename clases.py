@@ -14,11 +14,15 @@ class Vehiculo:
 
 
     def hechar_gasolina(self,gasolina):
-        if self.gasolina+gasolina<=self.deposito:
-            self.gasolina+=gasolina
+        if Vehiculo.tipo=='eléctrico':
+            print('El coche ha explotado')
+            del self
         else:
-            print("No se puede hechar gasolina por encima del limite")
-            self.gasolina=self.deposito
+            if self.gasolina+gasolina<=self.deposito:
+                self.gasolina+=gasolina
+            else:
+                print("No se puede hechar gasolina por encima del limite")
+                self.gasolina=self.deposito
 
 
 class Persona:
