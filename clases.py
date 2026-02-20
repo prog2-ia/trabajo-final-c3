@@ -13,8 +13,8 @@ class Vehiculo:
         self.km_recorridos+=km
 
 
-    def hechar_gasolina(self,gasolina):
-        if Vehiculo.tipo=='eléctrico':
+    def echar_gasolina(self,gasolina):
+        if self.tipo=='eléctrico':
             print('El coche ha explotado')
             del self
         else:
