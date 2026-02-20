@@ -1,6 +1,5 @@
 class Vehiculo:
-    numero_vehiculos=0
-    def __init__(self,matricula,marca,modelo,color,deposito,tipo,precio_d):
+    def __init__(self,matricula,marca,modelo,color,deposito,tipo,consumo):
         self.matricula=matricula
         self.marca=marca
         self.modelo=modelo
@@ -10,23 +9,22 @@ class Vehiculo:
         self.deposito=deposito
         self.tipo=tipo
         self.averías=[]
-        self.precio_d=precio_d
-        self.ocupado=False
-        Vehiculo.numero_vehiculos+=1
+        self.consumo=consumo
+
+    def __str__(self):
+        return f"{self.marca} {self.modelo} ({self.matricula}) - KM: {self.km_recorridos} - Combustible: {self.gasolina}/{self.deposito}L"
+
+    def __repr__(self):
+        return f"Vehiculo(matricula='{self.matricula}', marca='{self.marca}', modelo='{self.modelo}')"
 
     def suma_km(self,km):
         self.km_recorridos+=km
-    def nueva_averia(self,Tipo,Gravedad):
-        averia={}
-        averia['Tipo']=Tipo
-        averia['Gravedad']=Gravedad
-        self.averías.append(averia)
 
 
     def echar_gasolina(self,gasolina):
         if self.tipo=='eléctrico':
             print('Has intentado echar gasolina en un coche eléctrico, tu motor ha sufrido una explosión.')
-            self.nueva_averia('Explosión de motor','Alta')
+            self.averías.append('Explosion de motor por combustible')
         else:
             if self.gasolina+gasolina<=self.deposito:
                 self.gasolina+=gasolina
@@ -34,8 +32,27 @@ class Vehiculo:
                 print("No se puede hechar gasolina por encima del limite")
                 self.gasolina=self.deposito
     def mostrar_averias(self):
-        if self.averías != []:
-            for i in range(len(self.averías)):
-                print(f'{i}- Tipo: {self.averías[i]['Tipo']}, Gravedad: {self.averías[i]['Tipo']}')
-        else:
-            print('El vehiculo no tiene ninguna avería')
+        for i in self.averías:
+            print(i)
+
+
+class Persona:
+    def __init__(self,DNI,nombre,apellido,coche):
+        self.dni=DNI
+        self.nombre=nombre
+        self.apellido=apellido
+        self.coche=coche
+
+class Trabajador:
+    def __init__(self,dni,nombre,apellidos,cargo,sueldo):
+        self.dni=dni
+        self.apellidos=apellidos
+        self.cargo=cargo
+        self.sueldo=sueldo
+        self.ventas=0
+
+    def aumento(self,dinero):
+        self.sueldo+=dinero
+        print('El sueldo de ',self,' ha aumentado a ',self.sueldo,'€.')
+
+class
