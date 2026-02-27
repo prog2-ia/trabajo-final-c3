@@ -30,3 +30,5 @@ class Vehiculo:
     def mostrar_averias(self):
         for i in self.averías:
             print(i)
+
+    def ocupado(self):
