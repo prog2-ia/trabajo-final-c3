@@ -32,6 +32,7 @@ class Vehiculo:
                 print("No se puede hechar gasolina por encima del limite")
                 self.gasolina=self.deposito
     def mostrar_averias(self):
+
         for i in self.averías:
             print(i)
 
