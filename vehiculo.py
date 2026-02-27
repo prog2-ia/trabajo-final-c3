@@ -12,7 +12,7 @@ class Vehiculo:
         self.averías=[]
         self.precio_d=precio_d
         self.ocupado=False
-        type(self).numero_vehiculos+=1
+        Vehiculo.numero_vehiculos+=1
 
     def suma_km(self,km):
         self.km_recorridos+=km
