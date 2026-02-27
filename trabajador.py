@@ -14,3 +14,4 @@ class Trabajador(Persona):
     def sueldo_semanal(self,horas):
         seuldo_s=horas*self.sueldo_hora
         return seuldo_s
+
