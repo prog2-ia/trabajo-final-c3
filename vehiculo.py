@@ -11,6 +11,7 @@ class Vehiculo:
         self.tipo=tipo
         self.averías=[]
         self.precio_d=precio_d
+        self.ocupado=False
         type(self).numero_vehiculos+=1
 
     def suma_km(self,km):
@@ -31,5 +32,3 @@ class Vehiculo:
         for i in self.averías:
             print(i)
 
-    def ocupado(self):
-f
