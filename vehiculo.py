@@ -34,6 +34,8 @@ class Vehiculo:
                 print("No se puede hechar gasolina por encima del limite")
                 self.gasolina=self.deposito
     def mostrar_averias(self):
-        for i in self.averías:
-            print(i)
-
+        if self.averías != []:
+            for i in range(len(self.averías)):
+                print(f'{i}- Tipo: {self.averías[i]['Tipo']}, Gravedad: {self.averías[i]['Tipo']}')
+        else:
+            print('El vehiculo no tiene ninguna averia')
