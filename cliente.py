@@ -1,6 +1,4 @@
 class Cliente:
-    def __init__(self,DNI,nombre,apellido):
-        self.dni=DNI
-        self.nombre=nombre
-        self.apellido=apellido
+    def __init__(self,dni,nombre,apellidos):
+        super().__init__(dni,nombre,apellidos)
         self.vehiculos=[]

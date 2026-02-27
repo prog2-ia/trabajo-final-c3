@@ -1,7 +1,8 @@
-class Trabajador:
+from persona import Persona
+
+class Trabajador(Persona):
     def __init__(self,dni,nombre,apellidos,cargo,sueldo):
-        self.dni=dni
-        self.apellidos=apellidos
+        super().__init__(dni,nombre,apellidos)
         self.cargo=cargo
         self.sueldo=sueldo
         self.ventas=0
