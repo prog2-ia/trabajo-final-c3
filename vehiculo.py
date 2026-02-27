@@ -16,12 +16,17 @@ class Vehiculo:
 
     def suma_km(self,km):
         self.km_recorridos+=km
+    def nueva_averia(self,Tipo,Gravedad):
+        averia={}
+        averia['Tipo']=Tipo
+        averia['Gravedad']=Gravedad
+        self.averías.append(averia)
 
 
     def echar_gasolina(self,gasolina):
         if self.tipo=='eléctrico':
             print('Has intentado echar gasolina en un coche eléctrico, tu motor ha sufrido una explosión.')
-            self.averías.append('Explosion de motor por combustible')
+            self.nueva_averia('Explosión de motor','Alta')
         else:
             if self.gasolina+gasolina<=self.deposito:
                 self.gasolina+=gasolina
