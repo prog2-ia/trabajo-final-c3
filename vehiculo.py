@@ -38,4 +38,4 @@ class Vehiculo:
             for i in range(len(self.averías)):
                 print(f'{i}- Tipo: {self.averías[i]['Tipo']}, Gravedad: {self.averías[i]['Tipo']}')
         else:
-            print('El vehiculo no tiene ninguna averia')
+            print('El vehiculo no tiene ninguna avería')
