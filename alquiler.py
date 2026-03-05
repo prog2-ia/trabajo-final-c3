@@ -15,6 +15,12 @@ class Alquiler:
 
     def crear_reserva(self):
         if self.vehiculo.ocupado==False:
-            self.cliente.vehiculos.append(self.vehiculo)
+            if self.cliente.metodo_pago != []:
+                self.cliente.vehiculos.append(self.vehiculo)
+                return True
+            else:
+                print('El cliente aun no tiene ningun metodo de pago')
+                return False
         else:
             print('No se puede alquilar este vehiculo ya esta ocupado')
+            return False
