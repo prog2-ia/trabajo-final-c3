@@ -11,12 +11,17 @@ class Alquiler:
 
     def precio_alquiler(self):
         precio=(self.vehiculo.precio_d)*self.dias_alquiler
-        return f'El precio es {precio}€'
+        print( f'El precio es {precio}€')
+        return precio
+    def puntos(self):
+        puntos=self.precio_alquiler()*100
+        return puntos
 
     def crear_reserva(self):
         if self.vehiculo.ocupado==False:
             if self.cliente.metodo_pago != []:
                 self.cliente.vehiculos.append(self.vehiculo)
+                self.cliente.puntos+=self.puntos()
                 return True
             else:
                 print('El cliente aun no tiene ningun metodo de pago')
@@ -24,3 +29,5 @@ class Alquiler:
         else:
             print('No se puede alquilar este vehiculo ya esta ocupado')
             return False
+
+

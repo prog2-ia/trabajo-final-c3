@@ -3,3 +3,7 @@ class Persona:
         self.dni=dni
         self.nombre=nombre
         self.apellidos=apellidos
+
+    def validar_dni(self):
+        correcto=True
+        if 

@@ -8,6 +8,7 @@ class Cliente(Persona):
             self.edad=edad
             self.carnet=carnet
             self.metodo_pago=[]
+            self.puntos=0
         else:
             print('Edad insuficiente para poder alquilar un vehiculo')
 
