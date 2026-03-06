@@ -2,7 +2,7 @@ from persona import Persona
 
 class Cliente(Persona):
     def __init__(self,dni,nombre,apellidos,edad,carnet):
-        if edad>=18:
+        if edad>=18 and carnet==dni:
             super().__init__(dni,nombre,apellidos)
             self.vehiculos=[]
             self.edad=edad
