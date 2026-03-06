@@ -38,9 +38,7 @@ class Persona:
             if len(str(telefono))==9:
                 correcto=True
             else:
-                print('Teléfono incorrecto')
                 correcto=False
         else:
-            print('Teléfono incorrecto')
             correcto=False
         return correcto
