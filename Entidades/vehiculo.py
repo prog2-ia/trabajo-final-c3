@@ -1,3 +1,4 @@
+#Obj sede
 class Vehiculo:
     def __init__(self,matricula,marca,modelo,color,deposito,tipo,consumo):
         self.matricula=matricula

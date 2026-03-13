@@ -1,6 +1,6 @@
 from cupshelpers import Printer
 
-
+#Ojb:vehiculo,trabajador
 class Alquiler:
     def __init__(self,cliente,vehiculo,dias_alquiler,trabajador):
         self.cliente=cliente

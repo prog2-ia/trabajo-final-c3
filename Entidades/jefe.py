@@ -1,6 +1,6 @@
 from trabajador import Trabajador
 
-
+#
 class Jefe(Trabajador):
     def __init__(self,dni,nombre,apellidos,sueldo):
         super().__init__(dni,nombre,apellidos,sueldo)

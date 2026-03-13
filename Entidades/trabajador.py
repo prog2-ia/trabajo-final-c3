@@ -1,5 +1,5 @@
 from persona import Persona
-
+#Hereda persona
 class Trabajador(Persona):
     def __init__(self,dni,nombre,apellidos,sueldo):
         super().__init__(dni,nombre,apellidos)

@@ -1,5 +1,5 @@
 from persona import Persona
-
+#Obj: Alquiler
 class Cliente(Persona):
     def __init__(self,dni,nombre,apellidos,edad,carnet):
         if edad>=18 and carnet==dni:

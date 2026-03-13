@@ -1,6 +1,6 @@
 from vehiculo import Vehiculo
 
-
+#
 class Furgoneta(Vehiculo):
     def __init__(self,matricula,marca,modelo,color,deposito,precio_d,capacidad_carga,tamaño):
 
