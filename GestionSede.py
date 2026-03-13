@@ -1,4 +1,3 @@
-from Entidades.sede import Sede
 class GestorSede:
     def __init__(self):
         self.sedes = []
