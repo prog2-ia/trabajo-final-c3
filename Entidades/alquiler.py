@@ -10,12 +10,19 @@ class Alquiler:
 
 
     def precio_alquiler(self):
-        precio=(self.vehiculo.precio_d)*self.dias_alquiler
-        print( f'El precio es {precio}€')
-        return precio
-    def puntos(self):
-        puntos=self.precio_alquiler()*100
-        return puntos
+        precio_base=self.vehiculo.precio_d*self.dias_alquiler
+        descuento=0
+
+        if self.dias_alquiler>=14:
+            descuento=0.1
+        elif self.dias_alquiler>=7:
+            descuento=0.05
+
+        if self.cliente.puntos>=100:
+            self.cliente.puntos-=25
+            descuento+=0.1
+
+        return precio_base*(1-descuento)
 
     def crear_reserva(self):
         if self.vehiculo.ocupado==False:
