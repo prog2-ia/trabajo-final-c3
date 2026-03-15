@@ -1,23 +1,17 @@
-from persona import Persona
+from Entidades.persona import Persona
 #Obj: Alquiler
 class Cliente(Persona):
-    def __init__(self,dni,nombre,apellidos,edad,carnet):
-        if edad>=18 and carnet==dni:
-            super().__init__(dni,nombre,apellidos)
+    def __init__(self,dni,nombre,apellidos,telefono,edad,carnet):
+        if edad>=18 :
+            super().__init__(dni,nombre,apellidos,telefono)
             self.vehiculos=[]
             self.edad=edad
             self.carnet=carnet
             self.metodo_pago=[]
             self.puntos=0
-        else:
-            print('Edad insuficiente para poder alquilar un vehiculo')
 
-    def añadir_metodo_pago(self,metodo):
-        metodos=['Tarjetas','Cuenta Bancaria','Cheque','Efectivo']
+    def puede_alquilar(self):
+        if self.metodo_pago==[]:
+            return False
+        return True
 
-        if metodo in metodos:
-            self.metodo_pago.append(metodo)
-            return True
-        else:
-            print(f'El metodo {metodo} no es valido')
-            return  False

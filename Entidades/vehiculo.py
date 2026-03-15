@@ -12,6 +12,7 @@ class Vehiculo:
         self.tipo=tipo
         self.averías=[]
         self.consumo=consumo
+        self.ocupado=False
 
     def __str__(self):
         return f"{self.marca} {self.modelo} ({self.matricula}) - KM: {self.km_recorridos} - Combustible: {self.gasolina}/{self.deposito}L"

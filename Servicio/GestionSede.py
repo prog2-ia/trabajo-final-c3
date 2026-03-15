@@ -6,13 +6,13 @@ class GestorSede:
     def __init__(self):
         self.sedes = []
 
-    def anadir_sede(self, sede):
-        if isinstance(sede, Sede):
-            if self.buscar_sede_por_id(sede.idSede) is None:
-                self.sedes.append(sede)
-                return True
-        return False
+    def anadir_sede(self, id_sede, nombre, ciudad, direccion, telefono):
+        if self.buscar_sede_por_id(id_sede) is None:
+            sede = Sede(id_sede, nombre, ciudad, direccion, telefono)
+            self.sedes.append(sede)
+            return True
 
+        return False
     def buscar_sede_por_id(self, id_sede):
         for sede in self.sedes:
             if sede.idSede == id_sede:

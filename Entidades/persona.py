@@ -5,8 +5,7 @@ class Persona:
             self.nombre=nombre
             self.apellidos=apellidos
             self.telefono=telefono
-        else:
-            print('El dni o el teléfono no es correcto')
+
 
 
     def validar_dni(self,DNI):
