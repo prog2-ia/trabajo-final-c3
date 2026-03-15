@@ -9,9 +9,3 @@ class GestionAlquiler:
             pass
         return False
 
-    def busca_cliente(self,dni):
-        for alquiler in self.alquileres:
-            cliente=alquiler.cliente
-            if cliente.dni==dni:
-                return cliente
-        return None
