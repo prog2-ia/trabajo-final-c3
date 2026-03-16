@@ -6,6 +6,7 @@ from Entidades.vehiculo import Vehiculo
 
 #Ojb:vehiculo,trabajador
 class Alquiler:
+    cod=1
     def __init__(self,cliente,vehiculo,dias_alquiler,trabajador):
         self.cliente=cliente
         self.vehiculo=vehiculo
@@ -14,6 +15,11 @@ class Alquiler:
         self.activo=False
         self.fecha_inicio=None
         self.fecha_fin=None
+        self._codigo='A'+str(type(self).cod)
+        type(self).cod+=1
+    @property
+    def codigo(self):
+        return self._codigo
 
 #Cuanto cuesta un alquiler completo teniendo en cuenta el decuento
     def precio_alquiler(self):
@@ -47,4 +53,5 @@ class Alquiler:
             self.activo=False
             self.fecha_inicio=fecha_fin
             self.cliente.vehiculos.remove(self.vehiculo)
+
 

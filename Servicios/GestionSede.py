@@ -3,7 +3,7 @@ from Entidades.sede import Sede
 from Entidades.trabajador import Trabajador
 
 
-class GestorSede:
+class GestionSede:
     def __init__(self):
         self.sedes = []
 
