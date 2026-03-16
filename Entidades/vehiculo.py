@@ -11,6 +11,7 @@ class Vehiculo:
         self.deposito=deposito
         self.tipo=tipo
         self.averías=[]
+        self.resevas=[]
         self.consumo=consumo
         self.ocupado=False
 
