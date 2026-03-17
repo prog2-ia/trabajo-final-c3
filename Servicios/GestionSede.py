@@ -101,3 +101,24 @@ class GestionSede:
                     return trabajador
         return None
 
+    def lista_vehiculos_disponibles(self,id_sede):
+        disponibles=[]
+        sede=self.buscar_sede_por_id(id_sede)
+        if sede is None:
+            return None
+        for vehiculo in sede.vehiculos:
+            if vehiculo.ocupado==False:
+                disponibles.append(vehiculo)
+        return disponibles
+
+
+    def lista_vehiculos_ocupados(self,id_sede):
+        ocupados=[]
+        sede=self.buscar_sede_por_id(id_sede)
+        if sede is None:
+            return None
+        for vehiculo in sede.vehiculos:
+            if vehiculo.ocupado:
+                ocupados.append(vehiculo)
+        return ocupados
+

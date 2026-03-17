@@ -21,6 +21,12 @@ class Alquiler:
     def codigo(self):
         return self._codigo
 
+
+    def __bool__(self):
+        if self.activo:
+            return True
+        return False
+
 #Cuanto cuesta un alquiler completo teniendo en cuenta el decuento
     def precio_alquiler(self):
         dias_alquiler=diferecia_dias(self.fecha_fin,self.fecha_inicio)

@@ -10,14 +10,17 @@ class GestionAlquiler:
         self.gestor_sede = gestor_sede
 
     def crear_alquiler(self, dni_c, matricula, fecha_inicio, fecha_fin, dni_t):
+        fecha_inicio = string_a_fecha(fecha_inicio)
+        fecha_fin = string_a_fecha(fecha_fin)
+
         cliente = self.gestor_cliente.buscar_cliente(dni_c)
         vehiculo = self.gestor_sede.buscar_vehiculo(matricula)
         trabajador = self.gestor_sede.buscar_trabajador_por_dni(dni_t)
 
-        fecha_inicio = string_a_fecha(fecha_inicio)
-        fecha_fin = string_a_fecha(fecha_fin)
-
         if cliente is None or vehiculo is None or trabajador is None:
+            return False
+
+        if fecha_inicio is None or fecha_fin is None:
             return False
 
         if fecha_fin < fecha_inicio:
@@ -26,9 +29,15 @@ class GestionAlquiler:
         if vehiculo.ocupado or not cliente.puede_alquilar():
             return False
 
+        reserva = self.buscar_reserva_exacta(vehiculo, fecha_inicio, fecha_fin)
+        if reserva is None:
+            return False
+
         alquiler = Alquiler(cliente, vehiculo, fecha_inicio, fecha_fin, trabajador)
         self.alquileres.append(alquiler)
         vehiculo.ocupado = True
+
+
         return True
 
     def buscar_alquiler_codigo(self, codigo_alquiler):
@@ -46,24 +55,40 @@ class GestionAlquiler:
         if vehiculo is None:
             return False
 
+        if fecha_inicio is None or fecha_fin is None:
+            return False
+
         if fecha_fin < fecha_inicio:
             return False
 
-        if self.buscar_reserva(vehiculo, fecha_inicio, fecha_fin) is None:
+        if self.buscar_reserva_solapada(vehiculo, fecha_inicio, fecha_fin) is None:
             reserva = Reserva(fecha_inicio, fecha_fin)
             vehiculo.reservas.append(reserva)
             return True
 
         return False
 
-    def buscar_reserva(self, vehiculo, fecha_inicio, fecha_fin):
+
+    def buscar_reserva_solapada(self, vehiculo, fecha_inicio, fecha_fin):
         for reserva in vehiculo.reservas:
             if reserva.coinciden_fechas(fecha_inicio, fecha_fin):
                 return reserva
         return None
 
+    def buscar_reserva_exacta(self, vehiculo, fecha_inicio, fecha_fin):
+        for reserva in vehiculo.reservas:
+            if reserva.fecha_inicio == fecha_inicio and reserva.fecha_fin == fecha_fin:
+                return reserva
+        return None
+
     def eliminar_reserva(self, vehiculo, fecha_inicio, fecha_fin):
-        reserva = self.buscar_reserva(vehiculo, fecha_inicio, fecha_fin)
+        fecha_inicio = string_a_fecha(fecha_inicio)
+        fecha_fin = string_a_fecha(fecha_fin)
+
+        if fecha_inicio is None or fecha_fin is None:
+            return False
+
+        reserva = self.buscar_reserva_exacta(vehiculo, fecha_inicio, fecha_fin)
 
         if reserva is None:
             return False

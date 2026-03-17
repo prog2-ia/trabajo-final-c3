@@ -1,12 +1,14 @@
 class Persona:
     def __init__(self, dni, nombre, apellidos,telefono):
         if self.validar_dni(dni)==True and self.validar_movil(telefono)==True:
-            self.dni=dni
+            self._dni=dni
             self.nombre=nombre
             self.apellidos=apellidos
             self.telefono=telefono
 
-
+    @property
+    def dni(self):
+        return self._dni
 
     def validar_dni(self,DNI):
         letras = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E']
