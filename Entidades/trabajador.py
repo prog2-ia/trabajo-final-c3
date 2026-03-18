@@ -10,7 +10,7 @@ class Trabajador(Persona,ABC):
 
     @abstractmethod
     def calcular_sueldo(self, horas):
-        self.sueldo=horas*10
+        pass
 
     def aumento(self,dinero):
         self.sueldo+=dinero

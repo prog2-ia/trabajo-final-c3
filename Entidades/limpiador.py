@@ -1,5 +1,3 @@
-
-
 from trabajador import Trabajador
 
 class Limpiador(Trabajador):
@@ -10,4 +8,3 @@ class Limpiador(Trabajador):
     def calcular_sueldo(self):
         sueldo = self.horas * 10
         return sueldo
-
