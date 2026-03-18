@@ -3,14 +3,14 @@ from abc import ABC, abstractmethod
 from Entidades.persona import Persona
 #Hereda persona
 class Trabajador(Persona,ABC):
-    def __init__(self,dni,nombre,apellidos,telefono,sueldo):
+    def __init__(self,dni,nombre,apellidos,telefono,horas):
         super().__init__(dni,nombre,apellidos,telefono)
-        self.sueldo=sueldo
-        self.ventas=0
+        self.horas=horas
 
-    #@abstractmethod
-    #def calcular_salario(self):
-    #    pass
+
+    @abstractmethod
+    def calcular_sueldo(self, horas):
+        self.sueldo=horas*10
 
     def aumento(self,dinero):
         self.sueldo+=dinero
