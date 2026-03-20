@@ -5,7 +5,6 @@ class Vehiculo:
         self._matricula = matricula
         self._marca = marca
         self._modelo = modelo
-
         self.precio_d = precio_d
         self.color = color
         self.km_recorridos = 0
