@@ -1,11 +1,11 @@
 from Entidades.vehiculo import Vehiculo
 from Entidades.sede import Sede
-from Entidades.trabajador import Trabajador
-
+from Servicios.GestionTrabajador import GestionTrabajador
 
 class GestionSede:
-    def __init__(self):
+    def __init__(self, gestor_trabajador):
         self.sedes = []
+        self.gestor_trabajador = gestor_trabajador
 
     def añadir_sede(self, id_sede, nombre, ciudad, direccion, telefono):
         if self.buscar_sede_por_id(id_sede) is None:
@@ -69,23 +69,28 @@ class GestionSede:
 
         return False
 
-    def anadir_trabajador(self, id_sede, dni, nombre, apellidos, telefono, sueldo):
+    def anadir_trabajador(self, id_sede, dni):
         sede = self.buscar_sede_por_id(id_sede)
-
         if sede is None:
             return False
 
-        if self.buscar_trabajador_por_dni(dni) is not None:
+        trabajador = self.gestor_trabajador.buscar_trabajador(dni)
+        if trabajador is None:
             return False
-        trabajador = Trabajador(dni, nombre, apellidos, telefono, sueldo)
+
+        if trabajador in sede.trabajadores:
+            return False
+
         sede.trabajadores.append(trabajador)
         return True
 
     def eliminar_trabajador(self, id_sede, dni):
-        trabajador = self.buscar_trabajador_por_dni(dni)
         sede = self.buscar_sede_por_id(id_sede)
+        if sede is None:
+            return False
 
-        if trabajador is None or sede is None:
+        trabajador = self.gestor_trabajador.buscar_trabajador(dni)
+        if trabajador is None:
             return False
 
         if trabajador in sede.trabajadores:
@@ -95,30 +100,30 @@ class GestionSede:
         return False
 
     def buscar_trabajador_por_dni(self, dni):
-        for sede in self.sedes:
-            for trabajador in sede.trabajadores:
-                if trabajador.dni == dni:
-                    return trabajador
-        return None
+        return self.gestor_trabajador.buscar_trabajador(dni)
 
-    def lista_vehiculos_disponibles(self,id_sede):
-        disponibles=[]
-        sede=self.buscar_sede_por_id(id_sede)
+    def lista_vehiculos_disponibles(self, id_sede):
+        disponibles = []
+        sede = self.buscar_sede_por_id(id_sede)
+
         if sede is None:
             return None
+
         for vehiculo in sede.vehiculos:
-            if vehiculo.ocupado==False:
+            if vehiculo.ocupado is False:
                 disponibles.append(vehiculo)
+
         return disponibles
 
+    def lista_vehiculos_ocupados(self, id_sede):
+        ocupados = []
+        sede = self.buscar_sede_por_id(id_sede)
 
-    def lista_vehiculos_ocupados(self,id_sede):
-        ocupados=[]
-        sede=self.buscar_sede_por_id(id_sede)
         if sede is None:
             return None
+
         for vehiculo in sede.vehiculos:
             if vehiculo.ocupado:
                 ocupados.append(vehiculo)
-        return ocupados
 
+        return ocupados
