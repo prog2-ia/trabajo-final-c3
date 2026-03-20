@@ -4,10 +4,11 @@ from Entidades.reserva import Reserva
 
 
 class GestionAlquiler:
-    def __init__(self, gestor_cliente, gestor_sede):
+    def __init__(self, gestor_cliente, gestor_sede,gestor_trabajador):
         self.alquileres = []
         self.gestor_cliente = gestor_cliente
         self.gestor_sede = gestor_sede
+        self.gestor_trabajador=gestor_trabajador
 
     def crear_alquiler(self, dni_c, matricula, fecha_inicio, fecha_fin, dni_t):
         fecha_inicio = string_a_fecha(fecha_inicio)
@@ -15,7 +16,7 @@ class GestionAlquiler:
 
         cliente = self.gestor_cliente.buscar_cliente(dni_c)
         vehiculo = self.gestor_sede.buscar_vehiculo(matricula)
-        trabajador = self.gestor_sede.buscar_trabajador_por_dni(dni_t)
+        trabajador = self.gestor_trabajador.buscar_trabajador(dni_t)
 
         if cliente is None or vehiculo is None or trabajador is None:
             return False
@@ -34,6 +35,8 @@ class GestionAlquiler:
             return False
 
         alquiler = Alquiler(cliente, vehiculo, fecha_inicio, fecha_fin, trabajador)
+        trabajador.alquileres.append(alquiler)
+
         self.alquileres.append(alquiler)
         vehiculo.ocupado = True
 
