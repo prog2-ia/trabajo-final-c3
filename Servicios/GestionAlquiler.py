@@ -1,6 +1,7 @@
 from Entidades.alquiler import Alquiler
 from Servicios.utils_fecha import string_a_fecha
 from Entidades.reserva import Reserva
+from Entidades.vendedor import Vendedor
 
 
 class GestionAlquiler:
@@ -19,6 +20,8 @@ class GestionAlquiler:
         trabajador = self.gestor_trabajador.buscar_trabajador(dni_t)
 
         if cliente is None or vehiculo is None or trabajador is None:
+            return False
+        if not isinstance(trabajador,Vendedor):
             return False
 
         if fecha_inicio is None or fecha_fin is None:

@@ -1,8 +1,8 @@
-from trabajador import Trabajador
+from Entidades.trabajador import Trabajador
 
 class Limpiador(Trabajador):
-    def __init__(self,dni,nombre,apellidos,telefono):
-        super().__init__(dni, nombre, apellidos, telefono)
+    def __init__(self,dni,nombre,apellidos,telefono,horas):
+        super().__init__(dni, nombre, apellidos, telefono,horas)
         self.sueldo=self.calcular_sueldo()
 
     def calcular_sueldo(self):

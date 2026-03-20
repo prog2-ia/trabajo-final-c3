@@ -1,6 +1,4 @@
-
-
-from trabajador import Trabajador
+from Entidades.trabajador import Trabajador
 
 class Vendedor(Trabajador):
     def __init__(self,dni,nombre,apellidos,telefono,horas):
@@ -15,5 +13,3 @@ class Vendedor(Trabajador):
         numero=len(self.alquileres)
         return numero
 
-t1=Vendedor('2342','32f','afs','2423',522)
-print(t1.sueldo)

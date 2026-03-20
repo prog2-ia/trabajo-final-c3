@@ -1,4 +1,6 @@
 from Entidades.trabajador import Trabajador
+from Entidades.vendedor import Vendedor
+from Entidades.limpiador import Limpiador
 class GestionTrabajador:
     def __init__(self):
         self.trabajadores=[]
@@ -35,3 +37,11 @@ class GestionTrabajador:
             if trabajador.dni==dni:
                 return trabajador
         return None
+    def mejor_vendedor(self):
+        vendedor=0
+        for i in self.trabajadores:
+            if isinstance(i,Vendedor):
+                if i.numero_alquileres>vendedor.alquileres or vendedor==0:
+                    vendedor=i
+        return vendedor
+
