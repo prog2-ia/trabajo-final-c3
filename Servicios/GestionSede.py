@@ -1,11 +1,12 @@
-from Entidades.vehiculo import Vehiculo
 from Entidades.sede import Sede
-from Servicios.GestionTrabajador import GestionTrabajador
+from Entidades.coche import Coche
+from Entidades.furgoneta import Furgoneta
+from Entidades.moto import Moto
+
 
 class GestionSede:
-    def __init__(self, gestor_trabajador):
+    def __init__(self):
         self.sedes = []
-        self.gestor_trabajador = gestor_trabajador
 
     def añadir_sede(self, id_sede, nombre, ciudad, direccion, telefono):
         if self.buscar_sede_por_id(id_sede) is None:
@@ -20,20 +21,55 @@ class GestionSede:
                 return sede
         return None
 
-    def buscar_sede_por_nombre(self, nombre):
+    def buscar_vehiculo(self, matricula):
         for sede in self.sedes:
-            if sede.nombre.lower() == nombre.lower():
-                return sede
+            for vehiculo in sede.vehiculos:
+                if vehiculo.matricula == matricula:
+                    return vehiculo
         return None
 
-    def añadir_vehiculo(self, id_sede, vehiculo):
+    def _añadir_vehiculo(self, id_sede, clase_vehiculo, *args):
         sede = self.buscar_sede_por_id(id_sede)
 
-        if sede is not None and isinstance(vehiculo, Vehiculo):
-            if self.buscar_vehiculo(vehiculo.matricula) is None:
-                sede.vehiculos.append(vehiculo)
-                return True
-        return False
+        if sede is None:
+            return False
+
+        matricula = args[0]
+        if self.buscar_vehiculo(matricula) is not None:
+            return False
+
+        vehiculo = clase_vehiculo(*args)
+        sede.vehiculos.append(vehiculo)
+        return True
+
+    def añadir_coche(self, id_sede, matricula, marca, modelo, color,
+                     deposito, tipo, consumo, precio_d, num_asientos):
+        return self._añadir_vehiculo(
+            id_sede,
+            Coche,
+            matricula, marca, modelo, color,
+            deposito, tipo, consumo, precio_d, num_asientos
+        )
+
+    def añadir_furgoneta(self, id_sede, matricula, marca, modelo, color,
+                         deposito, tipo, consumo, precio_d,
+                         capacidad_carga, tamaño):
+        return self._añadir_vehiculo(
+            id_sede,
+            Furgoneta,
+            matricula, marca, modelo, color,
+            deposito, tipo, consumo, precio_d,
+            capacidad_carga, tamaño
+        )
+
+    def añadir_moto(self, id_sede, matricula, marca, modelo, color,
+                    deposito, tipo, consumo, precio_d, cilindrada):
+        return self._añadir_vehiculo(
+            id_sede,
+            Moto,
+            matricula, marca, modelo, color,
+            deposito, tipo, consumo, precio_d, cilindrada
+        )
 
     def eleminar_vehiculo(self, id_sede, matricula):
         vehiculo = self.buscar_vehiculo(matricula)
@@ -127,3 +163,5 @@ class GestionSede:
                 ocupados.append(vehiculo)
 
         return ocupados
+
+
