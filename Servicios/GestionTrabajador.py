@@ -1,6 +1,6 @@
-from Entidades.trabajador import Trabajador
 from Entidades.vendedor import Vendedor
 from Entidades.limpiador import Limpiador
+from Entidades.jefe import Jefe
 class GestionTrabajador:
     def __init__(self):
         self.trabajadores=[]

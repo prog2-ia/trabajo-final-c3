@@ -163,5 +163,3 @@ class GestionSede:
                 ocupados.append(vehiculo)
 
         return ocupados
-
-
