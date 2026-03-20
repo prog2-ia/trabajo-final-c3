@@ -3,12 +3,25 @@ class GestionTrabajador:
     def __init__(self):
         self.trabajadores=[]
 
-    def contratar(self,dni,nombre,apellidos,telefono,horas):
-        if self.buscar_trabajador(dni) is None:
-            trabajador=Trabajador(dni,nombre,apellidos,telefono,horas)
-            self.trabajadores.append(trabajador)
-            return True
-        return False
+    def contratar(self,cargo,dni,nombre,apellidos,telefono,horas):
+        if cargo=='limpiador':
+            if self.buscar_trabajador(dni) is None:
+                limpiador = Limpiador(dni, nombre, apellidos, telefono, horas)
+                self.trabajadores.append(limpiador)
+                return True
+            return False
+        if cargo=='vendedor':
+            if self.buscar_trabajador(dni) is None:
+                vendedor = Vendedor(dni, nombre, apellidos, telefono, horas)
+                self.trabajadores.append(vendedor)
+                return True
+            return False
+        if cargo=='jefe':
+            if self.buscar_trabajador(dni) is None:
+                jefe = Jefe(dni, nombre, apellidos, telefono, horas)
+                self.trabajadores.append(jefe)
+                return True
+            return False
 
     def despedir(self,dni):
         trabajador=self.buscar_trabajador(dni)
