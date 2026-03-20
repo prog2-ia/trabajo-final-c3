@@ -1,10 +1,10 @@
-from vehiculo import Vehiculo
+from Entidades.vehiculo import Vehiculo
 
 #
 class Furgoneta(Vehiculo):
-    def __init__(self,matricula,marca,modelo,color,deposito,precio_d,capacidad_carga,tamaño):
+    def __init__(self,matricula,marca,modelo,color,deposito,tipo,consumo,precio_d,capacidad_carga,tamaño):
 
-        super().__init__(matricula,marca,modelo,color,deposito,precio_d)
+        super().__init__(matricula,marca,modelo,color,deposito,tipo,consumo,precio_d)
         self.capacidad_carga=capacidad_carga
         self.tamaño=tamaño
 
