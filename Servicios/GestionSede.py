@@ -5,8 +5,9 @@ from Entidades.moto import Moto
 
 
 class GestionSede:
-    def __init__(self):
+    def __init__(self,gestor_trabajador):
         self.sedes = []
+        self.gestor_trabajador=gestor_trabajador
 
     def añadir_sede(self, id_sede, nombre, ciudad, direccion, telefono):
         if self.buscar_sede_por_id(id_sede) is None:
@@ -84,25 +85,18 @@ class GestionSede:
 
         return False
 
-    def buscar_vehiculo(self, matricula):
-        for sede in self.sedes:
-            for vehiculo in sede.vehiculos:
-                if vehiculo.matricula == matricula:
-                    return vehiculo
-        return None
+
 
     def mover_vehiculo(self, id_sede1, id_sede2, matricula):
         vehiculo = self.buscar_vehiculo(matricula)
         sede1 = self.buscar_sede_por_id(id_sede1)
         sede2 = self.buscar_sede_por_id(id_sede2)
-
         if vehiculo is None or sede1 is None or sede2 is None:
             return False
-
-        if self.eleminar_vehiculo(id_sede1, matricula):
-            if self.añadir_vehiculo(id_sede2, vehiculo):
-                return True
-
+        if vehiculo in sede1.vehiculos:
+            sede1.vehiculos.remove(vehiculo)
+            sede2.vehiculos.append(vehiculo)
+            return True
         return False
 
     def anadir_trabajador(self, id_sede, dni):

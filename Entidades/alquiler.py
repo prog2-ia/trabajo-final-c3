@@ -1,4 +1,3 @@
-from cupshelpers import Printer
 from Entidades.cliente import Cliente
 from Entidades.vehiculo import Vehiculo
 from Servicios.utils_fecha import string_a_fecha,diferecia_dias

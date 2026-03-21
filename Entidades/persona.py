@@ -18,7 +18,7 @@ class Persona:
         if len(dni)==9:
             numeros=dni[0:8]
             for i in numeros:
-                if not i.isdigit:
+                if not i.isdigit():
                     correcto=False
                 else:
                     numero=numero*10

@@ -8,8 +8,7 @@ from UI.menu import Menu
 if __name__ == "__main__":
     gestor_cliente = GestionCliente()
     gestor_trabajador = GestionTrabajador()
-    gestor_sede = GestionSede()
-    gestor_sede.gestor_trabajador = gestor_trabajador
+    gestor_sede = GestionSede(gestor_trabajador)
     gestor_mantenimiento = GestionMantenimiento(gestor_sede)
     gestor_alquiler = GestionAlquiler(gestor_cliente, gestor_sede, gestor_trabajador)
 
