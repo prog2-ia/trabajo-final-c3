@@ -9,6 +9,8 @@ class Vendedor(Trabajador):
     def calcular_sueldo(self):
         sueldo=self.horas*15
         return sueldo
+
+#Función para ver cuantos alquileres ha gestionado
     def numero_alquileres(self):
         numero=len(self.alquileres)
         return numero

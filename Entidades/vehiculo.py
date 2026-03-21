@@ -16,6 +16,7 @@ class Vehiculo:
         self.consumo = consumo
         self.ocupado = False
 
+#Creamos funciones con @property para mostrar los atributos protegidos
     @property
     def matricula(self):
         return self._matricula
@@ -28,6 +29,7 @@ class Vehiculo:
     def modelo(self):
         return self._modelo
 
+#Creamos metodos str y repr
     def __str__(self):
         return f"{self.marca} {self.modelo} ({self.matricula}) - KM: {self.km_recorridos} - Combustible: {self.gasolina}/{self.deposito}L"
 
@@ -38,7 +40,7 @@ class Vehiculo:
         self.km_recorridos += km
 
     def echar_gasolina(self, gasolina):
-        if self.tipo == 'eléctrico':
+        if self.tipo == 'eléctrico':                                     #Si se echa gasolina a un coche eléctrico se avería
             print('Has intentado echar gasolina en un coche eléctrico.')
             self.averias.append('Explosión de motor por combustible')
         else:

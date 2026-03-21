@@ -9,7 +9,7 @@ class Persona:
     @property
     def dni(self):
         return self._dni
-
+#Función que valida dnis
     def validar_dni(self,DNI):
         letras = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E']
         dni=list(DNI)
@@ -32,7 +32,7 @@ class Persona:
 
 
 
-
+#Función que valida el número de teléfono
     def validar_movil(self,telefono):
         correcto=True
         if type(telefono)==type(4):

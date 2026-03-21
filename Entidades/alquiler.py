@@ -4,7 +4,7 @@ from Entidades.vehiculo import Vehiculo
 from Servicios.utils_fecha import string_a_fecha,diferecia_dias
 #Ojb:vehiculo,trabajador
 class Alquiler:
-    cod=1
+    cod=1    #Contador para el código de alquiler
     def __init__(self,cliente,vehiculo,fecha_inicio,fecha_fin,trabajador):
 
         self.cliente=cliente
@@ -15,19 +15,19 @@ class Alquiler:
         self.fecha_fin=fecha_fin
         self.fecha_recogida_vehiculo=None
         self.fecha_devolucion_vehiculo=None
-        self._codigo='A'+str(type(self).cod)
-        type(self).cod+=1
+        self._codigo='A'+str(type(self).cod)      #Código= A + el código actual del contador
+        type(self).cod+=1                         #Sumamos 1 al contador
     @property
-    def codigo(self):
+    def codigo(self):              #Convertimos el atributo código en accesible con @Property
         return self._codigo
 
-
+#Función para comprobar si el alquiler está activo
     def __bool__(self):
         if self.activo:
             return True
         return False
 
-#Cuanto cuesta un alquiler completo teniendo en cuenta el decuento
+#Cuanto cuesta un alquiler completo teniendo en cuenta el descuento
     def precio_alquiler(self):
         dias_alquiler=diferecia_dias(self.fecha_fin,self.fecha_inicio)
         precio_base=self.vehiculo.precio_d*dias_alquiler

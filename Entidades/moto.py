@@ -1,12 +1,12 @@
 from Entidades.vehiculo import Vehiculo
 #Hereda de vehiculo
 class Moto(Vehiculo):
-    numero_motos=0
+    numero_motos=0   #Contador para saber cuántas motos hay
     def __init__(self,matricula,marca,modelo,color,deposito,tipo,consumo,precio_d,cilindrada):
         super().__init__(matricula,marca,modelo,color,deposito,tipo,consumo,precio_d)
         self._cilindrada=cilindrada
         Moto.numero_motos+=1
 
     @property
-    def cilindrada(self):
+    def cilindrada(self):          #Creamos cilindrada con @property para mostrar el atributo protegido
         return self._cilindrada

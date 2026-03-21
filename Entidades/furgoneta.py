@@ -8,13 +8,14 @@ class Furgoneta(Vehiculo):
         self.capacidad_carga=capacidad_carga
         self.tamaño=tamaño
 
+#Función que actualiza el precio según la carga que puede llevar la furgoneta y el tamaño
     def actualizar_tarifa(self):
         carga={800:1,1000:1.1,1200:1.2}
         self.precio_d*=carga[self.capacidad_carga]
 
         tamaños={'Pequeña':0,'Mediana':10,'Grande':20}
 
-        if self.tamaño in tamaños:
+        if self.tamaño in tamaños:                  #Comprueba que el tamaño exista
             self.precio_d+=tamaños[self.tamaño]
             return True
         else:

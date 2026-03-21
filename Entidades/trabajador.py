@@ -7,11 +7,14 @@ class Trabajador(Persona,ABC):
         super().__init__(dni,nombre,apellidos,telefono)
         self.horas=horas
 
-
+#Creamos el abstractmethod calcular sueldo para todos los tipos de trabajadores
     @abstractmethod
     def calcular_sueldo(self, horas):
         pass
 
     def aumento(self,dinero):
-        self.sueldo+=dinero
-        print('El sueldo de ',self,' ha aumentado a ',self.sueldo,'€.')
+        if dinero>0:
+            self.sueldo+=dinero
+            return True
+        else:
+            return False
