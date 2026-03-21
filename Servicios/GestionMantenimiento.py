@@ -34,7 +34,7 @@ class GestionMantenimiento:
     def calcular_coste(self,matricula):
         vehiculo = self.Gestion_Sede.buscar_vehiculo(matricula)
         if vehiculo == None:
-            return False
+            return None
         averias_costos = {
             "Fallo de motor": 1200,
             "Problema de frenos": 350,

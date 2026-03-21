@@ -1,10 +1,10 @@
 class Persona:
     def __init__(self, dni, nombre, apellidos,telefono):
-        if self.validar_dni(dni)==True and self.validar_movil(telefono)==True:
-            self._dni=dni
-            self.nombre=nombre
-            self.apellidos=apellidos
-            self.telefono=telefono
+        #if self.validar_dni(dni)==True and self.validar_movil(telefono)==True:
+        self.nombre=nombre
+        self.apellidos=apellidos
+        self.telefono=telefono
+        self._dni=dni
 
     @property
     def dni(self):

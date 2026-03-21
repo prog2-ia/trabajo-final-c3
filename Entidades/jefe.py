@@ -1,4 +1,4 @@
-from trabajador import Trabajador
+from Entidades.trabajador import Trabajador
 
 #
 class Jefe(Trabajador):
