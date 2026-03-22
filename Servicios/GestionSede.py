@@ -9,6 +9,7 @@ class GestionSede:
         self.sedes = []
         self.gestor_trabajador=gestor_trabajador
 
+#Función para añadir una sede comprobando que esta no existiese anteriormente
     def añadir_sede(self, id_sede, nombre, ciudad, direccion, telefono):
         if self.buscar_sede_por_id(id_sede) is None:
             sede = Sede(id_sede, nombre, ciudad, direccion, telefono)
@@ -29,6 +30,7 @@ class GestionSede:
                     return vehiculo
         return None
 
+#Función que añade un vehiculo comprobando que la sede dada exista y que el vehiculo dado sea nuevo
     def _añadir_vehiculo(self, id_sede, clase_vehiculo, *args):
         sede = self.buscar_sede_por_id(id_sede)
 

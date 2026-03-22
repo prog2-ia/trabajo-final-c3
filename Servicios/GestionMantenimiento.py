@@ -3,11 +3,14 @@ class GestionMantenimiento:
         self.Gestion_Sede=gestion_Sede
         self.vehiculos_averiados=[]
 
+#Función que añade una avería dentro del vehículo y añade este vehículo a la lista de averiados
     def añadir_avería(self,averia,matricula):
         vehiculo=self.Gestion_Sede.buscar_vehiculo(matricula)
         averias = ["Fallo de motor", "Problema de frenos", "Batería descargada", "Cambio de aceite",
                    "Neumático pinchado", "Problema en la transmisión", "Fallo eléctrico", "Radiador dañado",
                    "Filtro de aire sucio", "Correa de distribución rota"]
+
+        #Se comprueba que la avería sea una de existentes y que el vehiculo no la tuviera antes
         if averia not in averias:
             return False
         elif vehiculo==None:
@@ -19,6 +22,8 @@ class GestionMantenimiento:
             vehiculo.averias.append(averia)
             self.vehiculos_averiados.append(vehiculo)
             return True
+
+   #Función que elimina las averías y devuelve el coste
     def reparar_vehiculo(self,matricula):
         vehiculo = self.Gestion_Sede.buscar_vehiculo(matricula)
         if vehiculo == None:
@@ -31,6 +36,7 @@ class GestionMantenimiento:
                 coste=self.calcular_coste(matricula)
                 return coste
 
+#Función usada al reparar el vehículo que calcula el coste de todas las averias del vehículo
     def calcular_coste(self,matricula):
         vehiculo = self.Gestion_Sede.buscar_vehiculo(matricula)
         if vehiculo == None:

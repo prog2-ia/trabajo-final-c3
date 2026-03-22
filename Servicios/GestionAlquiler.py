@@ -11,6 +11,7 @@ class GestionAlquiler:
         self.gestor_sede = gestor_sede
         self.gestor_trabajador=gestor_trabajador
 
+#Función que crea alquiler comprobando que existe el cliente, el vehiculo y el coche dados por los dni y la matrícula
     def crear_alquiler(self, dni_c, matricula, fecha_inicio, fecha_fin, dni_t):
         fecha_inicio = string_a_fecha(fecha_inicio)
         fecha_fin = string_a_fecha(fecha_fin)
@@ -21,7 +22,7 @@ class GestionAlquiler:
 
         if cliente is None or vehiculo is None or trabajador is None:
             return False
-        if not isinstance(trabajador,Vendedor):
+        if not isinstance(trabajador,Vendedor):  #Se comprueba que el trabajador sea un vendedor
             return False
 
         if fecha_inicio is None or fecha_fin is None:
@@ -46,12 +47,14 @@ class GestionAlquiler:
 
         return True
 
+#Función que devuelve un alquiler dado por su código si este existe
     def buscar_alquiler_codigo(self, codigo_alquiler):
         for alquiler in self.alquileres:
             if alquiler.codigo == codigo_alquiler:
                 return alquiler
         return None
 
+#Función para reservar el coche comprobando que este exista
     def crear_reserva(self, matricula, fecha_inicio, fecha_fin):
         vehiculo = self.gestor_sede.buscar_vehiculo(matricula)
 
@@ -81,6 +84,7 @@ class GestionAlquiler:
                 return reserva
         return None
 
+#Función que devuelve la reserva dada por las fechas exactas si esta existe
     def buscar_reserva_exacta(self, vehiculo, fecha_inicio, fecha_fin):
         for reserva in vehiculo.reservas:
             if reserva.fecha_inicio == fecha_inicio and reserva.fecha_fin == fecha_fin:
@@ -99,6 +103,6 @@ class GestionAlquiler:
         if reserva is None:
             return False
 
-        vehiculo.reservas.remove(reserva)
+        vehiculo.reservas.remove(reserva)   #Se elimina la reserva de la lista dentro de vehículos
         return True
 

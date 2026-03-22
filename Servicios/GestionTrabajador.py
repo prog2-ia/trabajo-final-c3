@@ -5,6 +5,7 @@ class GestionTrabajador:
     def __init__(self):
         self.trabajadores=[]
 
+#Función que crea y añade a la lista un trabajador con su cargo específico, comprobando que este sea uno de los existentes
     def contratar(self,cargo,dni,nombre,apellidos,telefono,horas):
         if cargo=='limpiador':
             if self.buscar_trabajador(dni) is None:
@@ -12,17 +13,19 @@ class GestionTrabajador:
                 self.trabajadores.append(limpiador)
                 return True
             return False
-        if cargo=='vendedor':
+        elif cargo=='vendedor':
             if self.buscar_trabajador(dni) is None:
                 vendedor = Vendedor(dni, nombre, apellidos, telefono, horas)
                 self.trabajadores.append(vendedor)
                 return True
             return False
-        if cargo=='jefe':
+        elif cargo=='jefe':
             if self.buscar_trabajador(dni) is None:
                 jefe = Jefe(dni, nombre, apellidos, telefono, horas)
                 self.trabajadores.append(jefe)
                 return True
+            return False
+        else:
             return False
 
     def despedir(self,dni):
@@ -37,6 +40,8 @@ class GestionTrabajador:
             if trabajador.dni==dni:
                 return trabajador
         return None
+
+    #Función que devuelve el trabajador que más ventas ha gestionado
     def mejor_vendedor(self):
         vendedor=0
         for i in self.trabajadores:

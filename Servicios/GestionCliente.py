@@ -5,6 +5,7 @@ class GestionCliente:
     def __init__(self):
         self.clientes=[]
 
+#Función que añade un cliente si este no existia antes
     def añadir_cliente(self,dni,nombre,apellidos,telefono,edad,carnet):
         if self.buscar_cliente(dni) is None:
             cliente=Cliente(dni,nombre,apellidos,telefono,edad,carnet)
@@ -12,6 +13,7 @@ class GestionCliente:
             return True
         return False
 
+#Función que elimina un cliente de la lista de clientes
     def elminar_cliente(self,dni):
         cliente=self.buscar_cliente(dni)
         if  cliente is None:
@@ -32,6 +34,7 @@ class GestionCliente:
 
         metodos=['Tarjeta Credito','Cuenta Bancaria','Cheque','Efectivo']
 
+#Se comprueba que el metodo es uno de los existentes y que el cliente no lo poseia antes
         if metodo in metodos and metodo and metodo not in cliente.metodo_pago:
             cliente.metodo_pago.append(metodo)
             return True
