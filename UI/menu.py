@@ -367,6 +367,8 @@ class Menu:
 
                 if self.gestion_alquiler.crear_alquiler(dni_c, matricula, fecha_inicio, fecha_fin, dni_t):
                     print("Alquiler creado")
+                    codigo=self.gestion_alquiler.alquileres[-1].codigo
+                    print(f'El codigo alquiler: {codigo}')
                 else:
                     print("No se pudo crear")
 

@@ -57,5 +57,7 @@ if __name__ == "__main__":
     gestor_alquiler.crear_reserva("1234ABC", "01-04-2026", "05-04-2026")
     gestor_alquiler.crear_reserva("5678EFG", "10-04-2026", "15-04-2026")
 
+    gestor_cliente.añadir_metodo_pago("12456738Z", "Efectivo")
+
     menu = Menu(gestor_cliente, gestor_trabajador, gestor_sede, gestor_mantenimiento, gestor_alquiler)
     menu.menu_general()
