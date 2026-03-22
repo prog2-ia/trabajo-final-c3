@@ -67,9 +67,7 @@ cd turepo
 python main.py
 ```
 
-## Autor
 
-Antonio Ferrández Rodríguez
 
 ## Notas
 
