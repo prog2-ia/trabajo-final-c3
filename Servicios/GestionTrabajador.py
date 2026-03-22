@@ -38,10 +38,10 @@ class GestionTrabajador:
                 return trabajador
         return None
     def mejor_vendedor(self):
-        vendedor=0
+        vendedor=None
         for i in self.trabajadores:
             if isinstance(i,Vendedor):
-                if i.numero_alquileres>vendedor.alquileres or vendedor==0:
+                if i.numero_alquileres()>vendedor.numero_alquileres() or vendedor is None:
                     vendedor=i
         return vendedor
 
