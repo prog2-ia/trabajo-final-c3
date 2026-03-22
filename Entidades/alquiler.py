@@ -64,5 +64,3 @@ class Alquiler:
             self.cliente.vehiculos.remove(self.vehiculo)
             return True
         return False
-
-

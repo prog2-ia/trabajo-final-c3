@@ -14,4 +14,3 @@ class Vendedor(Trabajador):
     def numero_alquileres(self):
         numero=len(self.alquileres)
         return numero
-

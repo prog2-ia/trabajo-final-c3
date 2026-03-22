@@ -6,4 +6,3 @@ class Coche(Vehiculo):
         super().__init__(matricula,marca,modelo,color,deposito,tipo,consumo,precio_d)
         self.num_asientos=num_asientos
         Coche.num_coche+=1
-

@@ -105,4 +105,3 @@ class GestionAlquiler:
 
         vehiculo.reservas.remove(reserva)   #Se elimina la reserva de la lista dentro de vehículos
         return True
-

@@ -9,5 +9,3 @@ class Sede:
         self.telefono = telefono
         self.vehiculos = []
         self.trabajadores = []
-
-

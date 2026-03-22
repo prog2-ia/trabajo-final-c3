@@ -18,5 +18,3 @@ class Cliente(Persona):
         if self.metodo_pago==[]:
             return False
         return True
-
-

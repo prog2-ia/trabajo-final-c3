@@ -49,4 +49,3 @@ class GestionTrabajador:
                 if i.numero_alquileres()>vendedor.numero_alquileres() or vendedor is None:
                     vendedor=i
         return vendedor
-

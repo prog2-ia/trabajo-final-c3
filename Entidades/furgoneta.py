@@ -21,5 +21,3 @@ class Furgoneta(Vehiculo):
         else:
             print('Dimension no valida')
             return False
-
-

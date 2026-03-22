@@ -9,4 +9,3 @@ class Jefe(Trabajador):
     def calcular_sueldo(self):
         sueldo=self.horas*100
         return sueldo
-
