@@ -1,5 +1,5 @@
 class Persona:
-    def __init__(self, dni, nombre, apellidos,telefono):
+    def __init__(self, dni:str, nombre:str, apellidos:str,telefono:int):
         #if self.validar_dni(dni)==True and self.validar_movil(telefono)==True:
         self.nombre=nombre
         self.apellidos=apellidos
@@ -7,10 +7,10 @@ class Persona:
         self._dni=dni
 
     @property
-    def dni(self):
+    def dni(self) -> str:
         return self._dni
 #Función que valida dnis
-    def validar_dni(self,DNI):
+    def validar_dni(self,DNI:str) -> bool:
         letras = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E']
         dni=list(DNI)
         correcto=True
@@ -33,7 +33,7 @@ class Persona:
 
 
 #Función que valida el número de teléfono
-    def validar_movil(self,telefono):
+    def validar_movil(self,telefono:int) -> bool:
         correcto=True
         if type(telefono)==type(4):
             if len(str(telefono))==9:

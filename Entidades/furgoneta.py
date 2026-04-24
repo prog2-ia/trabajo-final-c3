@@ -2,14 +2,14 @@ from Entidades.vehiculo import Vehiculo
 
 #
 class Furgoneta(Vehiculo):
-    def __init__(self,matricula,marca,modelo,color,deposito,tipo,consumo,precio_d,capacidad_carga,tamaño):
+    def __init__(self,matricula:str,marca:str,modelo:str,color:str,deposito:int,tipo:str,consumo:float,precio_d:float,capacidad_carga:int,tamaño:str):
 
         super().__init__(matricula,marca,modelo,color,deposito,tipo,consumo,precio_d)
         self.capacidad_carga=capacidad_carga
         self.tamaño=tamaño
 
 #Función que actualiza el precio según la carga que puede llevar la furgoneta y el tamaño
-    def actualizar_tarifa(self):
+    def actualizar_tarifa(self) -> bool:
         carga={800:1,1000:1.1,1200:1.2}
         self.precio_d*=carga[self.capacidad_carga]
 

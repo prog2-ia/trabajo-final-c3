@@ -3,16 +3,16 @@ from abc import ABC, abstractmethod
 from Entidades.persona import Persona
 #Hereda persona
 class Trabajador(Persona,ABC):
-    def __init__(self,dni,nombre,apellidos,telefono,horas):
+    def __init__(self,dni:str,nombre:str,apellidos:str,telefono:int,horas:int):
         super().__init__(dni,nombre,apellidos,telefono)
         self.horas=horas
 
 #Creamos el abstractmethod calcular sueldo para todos los tipos de trabajadores
     @abstractmethod
-    def calcular_sueldo(self, horas):
+    def calcular_sueldo(self, horas:int):
         pass
 
-    def aumento(self,dinero):
+    def aumento(self,dinero:int) -> bool:
         if dinero>0:
             self.sueldo+=dinero
             return True
