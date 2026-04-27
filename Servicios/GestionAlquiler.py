@@ -1,18 +1,25 @@
+from typing import Optional
+from datetime import date
+
 from Entidades.alquiler import Alquiler
-from Servicios.utils_fecha import string_a_fecha
 from Entidades.reserva import Reserva
+from Entidades.vehiculo import Vehiculo
 from Entidades.vendedor import Vendedor
+from Servicios.utils_fecha import string_a_fecha
+from Servicios.GestionCliente import GestionCliente
+from Servicios.GestionSede import GestionSede
+from Servicios.GestionTrabajador import GestionTrabajador
 
 
 class GestionAlquiler:
-    def __init__(self, gestor_cliente, gestor_sede,gestor_trabajador):
-        self.alquileres = []
-        self.gestor_cliente = gestor_cliente
-        self.gestor_sede = gestor_sede
-        self.gestor_trabajador=gestor_trabajador
+    def __init__(self, gestor_cliente: GestionCliente, gestor_sede: GestionSede, gestor_trabajador: GestionTrabajador) -> None:
+        self.alquileres: list[Alquiler] = []
+        self.gestor_cliente: GestionCliente = gestor_cliente
+        self.gestor_sede: GestionSede = gestor_sede
+        self.gestor_trabajador: GestionTrabajador = gestor_trabajador
 
 #Función que crea alquiler comprobando que existe el cliente, el vehiculo y el coche dados por los dni y la matrícula
-    def crear_alquiler(self, dni_c, matricula, fecha_inicio, fecha_fin, dni_t):
+    def crear_alquiler(self, dni_c: str, matricula: str, fecha_inicio: str, fecha_fin: str, dni_t: str) -> bool:
         fecha_inicio = string_a_fecha(fecha_inicio)
         fecha_fin = string_a_fecha(fecha_fin)
 
@@ -48,14 +55,14 @@ class GestionAlquiler:
         return True
 
 #Función que devuelve un alquiler dado por su código si este existe
-    def buscar_alquiler_codigo(self, codigo_alquiler):
+    def buscar_alquiler_codigo(self, codigo_alquiler: str) -> Optional[Alquiler]:
         for alquiler in self.alquileres:
             if alquiler.codigo == codigo_alquiler:
                 return alquiler
         return None
 
 #Función para reservar el coche comprobando que este exista
-    def crear_reserva(self, matricula, fecha_inicio, fecha_fin):
+    def crear_reserva(self, matricula: str, fecha_inicio: str, fecha_fin: str) -> bool:
         vehiculo = self.gestor_sede.buscar_vehiculo(matricula)
 
         fecha_inicio = string_a_fecha(fecha_inicio)
@@ -78,20 +85,20 @@ class GestionAlquiler:
         return False
 
 
-    def buscar_reserva_solapada(self, vehiculo, fecha_inicio, fecha_fin):
+    def buscar_reserva_solapada(self,vehiculo: Vehiculo, fecha_inicio: date, fecha_fin: date) -> Optional[Reserva]:
         for reserva in vehiculo.reservas:
             if reserva.coinciden_fechas(fecha_inicio, fecha_fin):
                 return reserva
         return None
 
 #Función que devuelve la reserva dada por las fechas exactas si esta existe
-    def buscar_reserva_exacta(self, vehiculo, fecha_inicio, fecha_fin):
+    def buscar_reserva_exacta(self, vehiculo: Vehiculo, fecha_inicio: date, fecha_fin: date) -> Optional[Reserva]:
         for reserva in vehiculo.reservas:
             if reserva.fecha_inicio == fecha_inicio and reserva.fecha_fin == fecha_fin:
                 return reserva
         return None
 
-    def eliminar_reserva(self, vehiculo, fecha_inicio, fecha_fin):
+    def eliminar_reserva(self,vehiculo: Vehiculo, fecha_inicio: str, fecha_fin: str) -> bool:
         fecha_inicio = string_a_fecha(fecha_inicio)
         fecha_fin = string_a_fecha(fecha_fin)
 

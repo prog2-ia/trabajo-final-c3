@@ -1,10 +1,14 @@
+from typing import Optional, Union
+from Entidades.vehiculo import Vehiculo
+from Servicios.GestionSede import GestionSede
+
 class GestionMantenimiento:
-    def __init__(self,gestion_Sede):
-        self.Gestion_Sede=gestion_Sede
-        self.vehiculos_averiados=[]
+    def __init__(self,gestion_Sede: GestionSede) -> None:
+        self.Gestion_Sede: GestionSede=gestion_Sede
+        self.vehiculos_averiados: list[Vehiculo]=[]
 
 #Función que añade una avería dentro del vehículo y añade este vehículo a la lista de averiados
-    def añadir_avería(self,averia,matricula):
+    def añadir_avería(self,averia: str, matricula: str) -> bool:
         vehiculo=self.Gestion_Sede.buscar_vehiculo(matricula)
         averias = ["Fallo de motor", "Problema de frenos", "Batería descargada", "Cambio de aceite",
                    "Neumático pinchado", "Problema en la transmisión", "Fallo eléctrico", "Radiador dañado",
@@ -24,7 +28,7 @@ class GestionMantenimiento:
             return True
 
    #Función que elimina las averías y devuelve el coste
-    def reparar_vehiculo(self,matricula):
+    def reparar_vehiculo(self,matricula: str) -> Union[float, bool]:
         vehiculo = self.Gestion_Sede.buscar_vehiculo(matricula)
         if vehiculo == None:
             return False
@@ -32,16 +36,16 @@ class GestionMantenimiento:
             if vehiculo.averias==[]:
                 return False
             else:
-                vehiculo.averias=[]
-                coste=self.calcular_coste(matricula)
-                return coste
+                coste = self.calcular_coste(matricula)
+                vehiculo.averias = []
+                return coste if coste is not None else False
 
 #Función usada al reparar el vehículo que calcula el coste de todas las averias del vehículo
-    def calcular_coste(self,matricula):
+    def calcular_coste(self,matricula: str) -> Optional[float]:
         vehiculo = self.Gestion_Sede.buscar_vehiculo(matricula)
         if vehiculo == None:
             return None
-        averias_costos = {
+        averias_costos: dict[str, int] = {
             "Fallo de motor": 1200,
             "Problema de frenos": 350,
             "Batería descargada": 100,
