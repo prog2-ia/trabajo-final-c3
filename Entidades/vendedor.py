@@ -1,12 +1,20 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
 from Entidades.trabajador import Trabajador
 
-class Vendedor(Trabajador):
-    def __init__(self,dni:str,nombre:str,apellidos:str,telefono:int,horas:int):
-        super().__init__(dni, nombre, apellidos, telefono,horas)
-        self.alquileres=[]
-        self.sueldo=self.calcular_sueldo()
+if TYPE_CHECKING:
+    from Entidades.alquiler import Alquiler
 
-    def calcular_sueldo(self) -> int :
+
+
+class Vendedor(Trabajador):
+    def __init__(self,dni:str,nombre:str,apellidos:str,telefono:int,horas:float):
+        super().__init__(dni, nombre, apellidos, telefono,horas)
+        self.alquileres: list[Alquiler] = []
+        self.sueldo = self.calcular_sueldo()
+
+    def calcular_sueldo(self) -> float :
         sueldo=self.horas*15
         return sueldo
 

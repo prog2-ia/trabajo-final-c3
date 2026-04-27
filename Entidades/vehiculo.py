@@ -1,20 +1,26 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from Entidades.reserva import Reserva
+
 # Obj sede
 class Vehiculo:
-    def __init__(self, matricula:str, marca:str, modelo:str, color:str, deposito:int, tipo:str, consumo:float, precio_d:float):
+    def __init__(self, matricula:str, marca:str, modelo:str, color:str, deposito:float, tipo:str, consumo:float, precio_d:float)->None:
 
-        self._matricula = matricula
-        self._marca = marca
-        self._modelo = modelo
-        self.precio_d = precio_d
-        self.color = color
-        self.km_recorridos = 0
-        self.gasolina = 0
-        self.deposito = deposito
-        self.tipo = tipo
-        self.averias = []
-        self.reservas = []
-        self.consumo = consumo
-        self.ocupado = False
+        self._matricula: str = matricula
+        self._marca: str = marca
+        self._modelo: str = modelo
+        self.precio_d: float = precio_d
+        self.color: str = color
+        self.km_recorridos: float = 0
+        self.gasolina: float = 0
+        self.deposito: float = deposito
+        self.tipo: str = tipo
+        self.averias: list[str] = []
+        self.reservas: list[Reserva] = []
+        self.consumo: float = consumo
+        self.ocupado: bool = False
 
 #Creamos funciones con @property para mostrar los atributos protegidos
     @property
@@ -30,16 +36,16 @@ class Vehiculo:
         return self._modelo
 
 #Creamos metodos str y repr
-    def __str__(self):
+    def __str__(self)->str:
         return f"{self.marca} {self.modelo} ({self.matricula}) - KM: {self.km_recorridos} - Combustible: {self.gasolina}/{self.deposito}L"
 
-    def __repr__(self):
+    def __repr__(self)->str:
         return f"Vehiculo(matricula='{self.matricula}', marca='{self.marca}', modelo='{self.modelo}')"
 
-    def suma_km(self, km:int) -> int:
+    def suma_km(self, km:int) -> None:
         self.km_recorridos += km
 
-    def echar_gasolina(self, gasolina:int):
+    def echar_gasolina(self, gasolina:float)->None:
         if self.tipo == 'eléctrico':                                     #Si se echa gasolina a un coche eléctrico se avería
             print('Has intentado echar gasolina en un coche eléctrico.')
             self.averias.append('Explosión de motor por combustible')
