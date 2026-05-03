@@ -3,17 +3,19 @@ from Servicios.GestionTrabajador import GestionTrabajador
 from Servicios.GestionSede import GestionSede
 from Servicios.GestionMantenimiento import GestionMantenimiento
 from Servicios.GestionAlquiler import GestionAlquiler
+from typing import Optional
 
 
 class Menu:
-    def __init__(self, gestion_cliente, gestion_trabajador, gestion_sede, gestion_mantenimiento, gestion_alquiler):
+    def __init__(self, gestion_cliente: GestionCliente, gestion_trabajador: GestionTrabajador,
+                 gestion_sede: GestionSede, gestion_mantenimiento: GestionMantenimiento, gestion_alquiler: GestionAlquiler) -> None:
         self.gestion_cliente = gestion_cliente
         self.gestion_trabajador = gestion_trabajador
         self.gestion_sede = gestion_sede
         self.gestion_mantenimiento = gestion_mantenimiento
         self.gestion_alquiler = gestion_alquiler
 
-    def elegir_metodo_pago(self):
+    def elegir_metodo_pago(self) -> None:
         metodos = {
             "1": "Tarjeta Credito",
             "2": "Cuenta Bancaria",
@@ -29,7 +31,7 @@ class Menu:
             return metodos[op]
         return None
 
-    def menu_clientes(self):
+    def menu_clientes(self)  -> None:
         while True:
             print("\n--- GESTIÓN CLIENTES ---")
             print("1. Añadir cliente")
@@ -91,7 +93,7 @@ class Menu:
             elif op == 6:
                 break
 
-    def menu_trabajadores(self):
+    def menu_trabajadores(self)-> None:
         while True:
             print("\n--- GESTIÓN TRABAJADORES ---")
             print("1. Contratar trabajador")
@@ -107,7 +109,7 @@ class Menu:
                 dni = input("DNI: ")
                 nombre = input("Nombre: ")
                 apellidos = input("Apellidos: ")
-                telefono = input("Teléfono: ")
+                telefono =int( input("Teléfono: "))
                 horas = int(input("Horas: "))
 
                 if self.gestion_trabajador.contratar(cargo, dni, nombre, apellidos, telefono, horas):
@@ -141,7 +143,7 @@ class Menu:
             elif op == 5:
                 break
 
-    def menu_sedes(self):
+    def menu_sedes(self)->None:
         while True:
             print("\n--- GESTIÓN SEDES Y VEHÍCULOS ---")
             print("1. Añadir sede")
@@ -271,7 +273,7 @@ class Menu:
             elif op == 10:
                 break
 
-    def menu_mantenimiento(self):
+    def menu_mantenimiento(self)->None:
         while True:
             print("\n--- GESTIÓN MANTENIMIENTO ---")
             print("1. Añadir avería")
@@ -338,7 +340,7 @@ class Menu:
             elif op == 4:
                 break
 
-    def menu_alquileres(self):
+    def menu_alquileres(self) -> None:
         while True:
             print("\n--- GESTIÓN ALQUILERES ---")
             print("1. Crear reserva")
@@ -372,6 +374,7 @@ class Menu:
                 else:
                     print("No se pudo crear")
 
+
             elif op == 3:
                 codigo = input("Código alquiler: ")
                 alquiler = self.gestion_alquiler.buscar_alquiler_codigo(codigo)
@@ -384,7 +387,7 @@ class Menu:
             elif op == 4:
                 break
 
-    def menu_general(self):
+    def menu_general(self)->None:
         while True:
             print("\n========== MENÚ GENERAL ==========")
             print("1. Gestión de clientes")

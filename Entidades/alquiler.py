@@ -1,6 +1,7 @@
 from __future__ import annotations
 from datetime import date
 from typing import Optional, TYPE_CHECKING
+from typing import Self
 if TYPE_CHECKING:
     from Entidades.vendedor import Vendedor
 
@@ -25,7 +26,7 @@ class Alquiler:
         self._codigo: str = 'A' + str(type(self).cod)  # Código= A + el código actual del contador
         type(self).cod += 1                         #Sumamos 1 al contador
     @property
-    def codigo(self) -> self:              #Convertimos el atributo código en accesible con @Property
+    def codigo(self) -> Self:              #Convertimos el atributo código en accesible con @Property
         return self._codigo
 
 #Función para comprobar si el alquiler está activo
