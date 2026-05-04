@@ -10,7 +10,7 @@ class Trabajador(Persona,ABC):
 
 #Creamos el abstractmethod calcular sueldo para todos los tipos de trabajadores
     @abstractmethod
-    def calcular_sueldo(self, horas:int)->int:
+    def calcular_sueldo(self)->int:
         pass
 
     def aumento(self,dinero:int) -> bool:

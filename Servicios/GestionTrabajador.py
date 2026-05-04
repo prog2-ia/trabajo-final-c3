@@ -9,7 +9,7 @@ class GestionTrabajador:
         self.trabajadores: list[Trabajador] = []
 
 #Función que crea y añade a la lista un trabajador con su cargo específico, comprobando que este sea uno de los existentes
-    def contratar(self, cargo: str, dni: str, nombre: str, apellidos: str, telefono: int, horas: float) -> bool:
+    def contratar(self, cargo: str, dni: str, nombre: str, apellidos: str, telefono: int, horas: int) -> bool:
         if cargo=='limpiador':
             if self.buscar_trabajador(dni) is None:
                 limpiador = Limpiador(dni, nombre, apellidos, telefono, horas)

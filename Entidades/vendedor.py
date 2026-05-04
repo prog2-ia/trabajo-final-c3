@@ -9,12 +9,12 @@ if TYPE_CHECKING:
 
 
 class Vendedor(Trabajador):
-    def __init__(self,dni:str,nombre:str,apellidos:str,telefono:int,horas:float):
+    def __init__(self,dni:str,nombre:str,apellidos:str,telefono:int,horas:int):
         super().__init__(dni, nombre, apellidos, telefono,horas)
         self.alquileres: list[Alquiler] = []
         self.sueldo = self.calcular_sueldo()
 
-    def calcular_sueldo(self) -> float :
+    def calcular_sueldo(self) -> int :
         sueldo=self.horas*15
         return sueldo
 

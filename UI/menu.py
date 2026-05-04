@@ -15,7 +15,7 @@ class Menu:
         self.gestion_mantenimiento = gestion_mantenimiento
         self.gestion_alquiler = gestion_alquiler
 
-    def elegir_metodo_pago(self) -> None:
+    def elegir_metodo_pago(self) -> str|None:
         metodos = {
             "1": "Tarjeta Credito",
             "2": "Cuenta Bancaria",
@@ -332,7 +332,7 @@ class Menu:
                 matricula = input("Matrícula: ")
                 coste = self.gestion_mantenimiento.calcular_coste(matricula)
 
-                if coste is False:
+                if coste == 0:
                     print("Vehículo no encontrado")
                 else:
                     print("Coste:", coste)

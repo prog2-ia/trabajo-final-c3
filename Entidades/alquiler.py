@@ -26,7 +26,7 @@ class Alquiler:
         self._codigo: str = 'A' + str(type(self).cod)  # Código= A + el código actual del contador
         type(self).cod += 1                         #Sumamos 1 al contador
     @property
-    def codigo(self) -> Self:              #Convertimos el atributo código en accesible con @Property
+    def codigo(self) -> str:              #Convertimos el atributo código en accesible con @Property
         return self._codigo
 
 #Función para comprobar si el alquiler está activo
@@ -68,7 +68,7 @@ class Alquiler:
 # Metodo que que ejecuta cuando el cliente devuelve el vehiculo
     def finalizar_alquiler(self,fecha_devolucion:str) -> bool :
         fecha_devolucion=string_a_fecha(fecha_devolucion)
-        if fecha_dev is None or self.fecha_recogida_vehiculo is None:
+        if fecha_devolucion is None or self.fecha_recogida_vehiculo is None:
             return False
         if self.vehiculo.ocupado or (fecha_devolucion<self.fecha_recogida_vehiculo):#no se finalizar un alquiler una fecha anterior a la que inicio
             self.vehiculo.ocupado=False
