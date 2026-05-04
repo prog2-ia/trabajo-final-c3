@@ -49,6 +49,6 @@ class GestionTrabajador:
         vendedor: Optional[Vendedor]=None
         for i in self.trabajadores:
             if isinstance(i,Vendedor):
-                if i.numero_alquileres()>vendedor.numero_alquileres() or vendedor is None:
+                if vendedor is None or i.numero_alquileres()>vendedor.numero_alquileres() :
                     vendedor=i
         return vendedor

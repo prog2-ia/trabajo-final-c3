@@ -41,7 +41,7 @@ class GestionSede:
         if sede is None:
             return False
 
-        matricula = args[0]
+        matricula:str=str( args[0])
         if self.buscar_vehiculo(matricula) is not None:
             return False
 

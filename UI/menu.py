@@ -321,20 +321,21 @@ class Menu:
 
             elif op == 2:
                 matricula = input("Matrícula: ")
-                coste = self.gestion_mantenimiento.reparar_vehiculo(matricula)
+                resultado = self.gestion_mantenimiento.reparar_vehiculo(matricula)  # float | bool
 
-                if coste is False:
+                if resultado is False:
                     print("No se pudo reparar")
                 else:
-                    print("Vehículo reparado. Coste:", coste)
+                    print("Vehículo reparado. Coste:", resultado)
 
             elif op == 3:
                 matricula = input("Matrícula: ")
-                coste = self.gestion_mantenimiento.calcular_coste(matricula)
+                coste:Optional[float]= self.gestion_mantenimiento.calcular_coste(matricula)  # float | None
 
-                if coste == 0:
+                if coste is None:
                     print("Vehículo no encontrado")
                 else:
+
                     print("Coste:", coste)
 
             elif op == 4:

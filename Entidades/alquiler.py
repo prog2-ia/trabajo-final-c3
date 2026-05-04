@@ -67,13 +67,13 @@ class Alquiler:
 
 # Metodo que que ejecuta cuando el cliente devuelve el vehiculo
     def finalizar_alquiler(self,fecha_devolucion:str) -> bool :
-        fecha_devolucion=string_a_fecha(fecha_devolucion)
-        if fecha_devolucion is None or self.fecha_recogida_vehiculo is None:
+        fecha_dev: Optional[date]=string_a_fecha(fecha_devolucion)
+        if fecha_dev is None or self.fecha_recogida_vehiculo is None:
             return False
-        if self.vehiculo.ocupado or (fecha_devolucion<self.fecha_recogida_vehiculo):#no se finalizar un alquiler una fecha anterior a la que inicio
+        if self.vehiculo.ocupado or (fecha_dev<self.fecha_recogida_vehiculo):#no se finalizar un alquiler una fecha anterior a la que inicio
             self.vehiculo.ocupado=False
             self.activo=False
-            self.fecha_devolucion_vehiculo=fecha_devolucion
+            self.fecha_devolucion_vehiculo=fecha_dev
             self.cliente.vehiculos.remove(self.vehiculo)
             return True
         return False

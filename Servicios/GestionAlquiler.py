@@ -19,9 +19,9 @@ class GestionAlquiler:
         self.gestor_trabajador: GestionTrabajador = gestor_trabajador
 
 #Función que crea alquiler comprobando que existe el cliente, el vehiculo y el coche dados por los dni y la matrícula
-    def crear_alquiler(self, dni_c: str, matricula: str, fecha_inicio: str, fecha_fin: str, dni_t: str) -> bool:
-        fecha_inicio = string_a_fecha(fecha_inicio)
-        fecha_fin = string_a_fecha(fecha_fin)
+    def crear_alquiler(self, dni_c: str, matricula: str, fecha_i: str, fecha_f: str, dni_t: str) -> bool:
+        fecha_inicio:Optional[date] = string_a_fecha(fecha_i)
+        fecha_fin:Optional[date] = string_a_fecha(fecha_f)
 
         cliente = self.gestor_cliente.buscar_cliente(dni_c)
         vehiculo = self.gestor_sede.buscar_vehiculo(matricula)
@@ -62,11 +62,11 @@ class GestionAlquiler:
         return None
 
 #Función para reservar el coche comprobando que este exista
-    def crear_reserva(self, matricula: str, fecha_inicio: str, fecha_fin: str) -> bool:
+    def crear_reserva(self, matricula: str, fecha_i: str, fecha_f: str) -> bool:
         vehiculo = self.gestor_sede.buscar_vehiculo(matricula)
 
-        fecha_inicio = string_a_fecha(fecha_inicio)
-        fecha_fin = string_a_fecha(fecha_fin)
+        fecha_inicio:Optional[date] = string_a_fecha(fecha_i)
+        fecha_fin:Optional[date] = string_a_fecha(fecha_f)
 
         if vehiculo is None:
             return False
@@ -98,9 +98,9 @@ class GestionAlquiler:
                 return reserva
         return None
 
-    def eliminar_reserva(self,vehiculo: Vehiculo, fecha_inicio: str, fecha_fin: str) -> bool:
-        fecha_inicio = string_a_fecha(fecha_inicio)
-        fecha_fin = string_a_fecha(fecha_fin)
+    def eliminar_reserva(self,vehiculo: Vehiculo, fecha_i: str, fecha_f: str) -> bool:
+        fecha_inicio:Optional[date] = string_a_fecha(fecha_i)
+        fecha_fin:Optional[date] = string_a_fecha(fecha_f)
 
         if fecha_inicio is None or fecha_fin is None:
             return False
