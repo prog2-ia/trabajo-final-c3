@@ -4,6 +4,7 @@ from Servicios.GestionSede import GestionSede
 from Servicios.GestionMantenimiento import GestionMantenimiento
 from Servicios.GestionAlquiler import GestionAlquiler
 from typing import Optional
+from Servicios.funciones_excepciones import pedir_entero, pedir_float, pedir_opcion
 
 
 class Menu:
@@ -41,7 +42,7 @@ class Menu:
             print("5. Eliminar método de pago")
             print("6. Volver")
 
-            op = int(input("Opción: "))
+            op = pedir_opcion("Opción: ", list(range(1, 7)))
 
             if op == 1:
                 dni = input("DNI: ")
@@ -102,15 +103,15 @@ class Menu:
             print("4. Mejor vendedor")
             print("5. Volver")
 
-            op = int(input("Opción: "))
+            op = pedir_opcion("Opción: ", list(range(1,6)))
 
             if op == 1:
                 cargo = input("Cargo (jefe, vendedor, limpiador): ")
                 dni = input("DNI: ")
                 nombre = input("Nombre: ")
                 apellidos = input("Apellidos: ")
-                telefono =int( input("Teléfono: "))
-                horas = int(input("Horas: "))
+                telefono = pedir_entero("Teléfono: ")
+                horas = pedir_entero("Horas: ")
 
                 if self.gestion_trabajador.contratar(cargo, dni, nombre, apellidos, telefono, horas):
                     print("Trabajador contratado")
@@ -157,14 +158,14 @@ class Menu:
             print("9. Ver vehículos ocupados")
             print("10. Volver")
 
-            op = int(input("Opción: "))
+            op = pedir_opcion("Opción: ", list(range(1, 11)))
 
             if op == 1:
                 id_sede = input("ID sede: ")
                 nombre = input("Nombre: ")
                 ciudad = input("Ciudad: ")
                 direccion = input("Dirección: ")
-                telefono = input("Teléfono: ")
+                telefono = pedir_entero("Teléfono: ")
 
                 if self.gestion_sede.añadir_sede(id_sede, nombre, ciudad, direccion, telefono):
                     print("Sede añadida")
@@ -177,11 +178,11 @@ class Menu:
                 marca = input("Marca: ")
                 modelo = input("Modelo: ")
                 color = input("Color: ")
-                deposito = int(input("Depósito: "))
+                deposito = pedir_float("Depósito: ")
                 tipo = input("Tipo: ")
-                consumo = int(input("Consumo: "))
-                precio_d = int(input("Precio día: "))
-                num_asientos = int(input("Número asientos: "))
+                consumo = pedir_float("Consumo: ")
+                precio_d = pedir_float("Precio día: ")
+                num_asientos = pedir_entero("Número asientos: ")
 
                 if self.gestion_sede.añadir_coche(id_sede, matricula, marca, modelo, color, deposito, tipo, consumo, precio_d, num_asientos):
                     print("Coche añadido")
@@ -194,11 +195,11 @@ class Menu:
                 marca = input("Marca: ")
                 modelo = input("Modelo: ")
                 color = input("Color: ")
-                deposito = int(input("Depósito: "))
+                deposito = pedir_float("Depósito: ")
                 tipo = input("Tipo: ")
-                consumo = int(input("Consumo: "))
-                precio_d = int(input("Precio día: "))
-                capacidad_carga = int(input("Capacidad de carga: "))
+                consumo = pedir_float("Consumo: ")
+                precio_d = pedir_float("Precio día: ")
+                capacidad_carga = pedir_entero("Capacidad de carga: ")
                 tamaño = input("Tamaño: ")
 
                 if self.gestion_sede.añadir_furgoneta(id_sede, matricula, marca, modelo, color, deposito, tipo, consumo, precio_d, capacidad_carga, tamaño):
@@ -212,11 +213,11 @@ class Menu:
                 marca = input("Marca: ")
                 modelo = input("Modelo: ")
                 color = input("Color: ")
-                deposito = int(input("Depósito: "))
+                deposito = pedir_float("Depósito: ")
                 tipo = input("Tipo: ")
-                consumo = int(input("Consumo: "))
-                precio_d = int(input("Precio día: "))
-                cilindrada = int(input("Cilindrada: "))
+                consumo = pedir_float("Consumo: ")
+                precio_d = pedir_float("Precio día: ")
+                cilindrada = pedir_entero("Cilindrada: ")
 
                 if self.gestion_sede.añadir_moto(id_sede, matricula, marca, modelo, color, deposito, tipo, consumo, precio_d, cilindrada):
                     print("Moto añadida")
@@ -281,7 +282,7 @@ class Menu:
             print("3. Calcular coste reparación")
             print("4. Volver")
 
-            op = int(input("Opción: "))
+            op = pedir_opcion("Opción: ", list(range(1, 5)))
 
             if op == 1:
                 matricula = input("Matrícula: ")
@@ -349,7 +350,7 @@ class Menu:
             print("3. Buscar alquiler por código")
             print("4. Volver")
 
-            op = int(input("Opción: "))
+            op = pedir_opcion("Opción: ", list(range(1, 5)))
 
             if op == 1:
                 matricula = input("Matrícula: ")
@@ -398,19 +399,19 @@ class Menu:
             print("5. Gestión de alquileres")
             print("6. Salir")
 
-            opcion = int(input("Opción: "))
+            op = pedir_opcion("Opción: ", list(range(1,7)))
 
-            if opcion == 1:
+            if op == 1:
                 self.menu_clientes()
-            elif opcion == 2:
+            elif op == 2:
                 self.menu_trabajadores()
-            elif opcion == 3:
+            elif op == 3:
                 self.menu_sedes()
-            elif opcion == 4:
+            elif op == 4:
                 self.menu_mantenimiento()
-            elif opcion == 5:
+            elif op == 5:
                 self.menu_alquileres()
-            elif opcion == 6:
+            elif op == 6:
                 print("Saliendo...")
                 break
 
