@@ -149,17 +149,15 @@ class Menu:
         while True:
             print("\n--- GESTIÓN SEDES Y VEHÍCULOS ---")
             print("1. Añadir sede")
-            print("2. Añadir coche")
-            print("3. Añadir furgoneta")
-            print("4. Añadir moto")
-            print("5. Eliminar vehículo")
-            print("6. Añadir trabajador a sede")
-            print("7. Eliminar trabajador de sede")
-            print("8. Ver vehículos disponibles")
-            print("9. Ver vehículos ocupados")
-            print("10. Volver")
+            print("2. Añadir vehículo")
+            print("3. Eliminar vehículo")
+            print("4. Añadir trabajador a sede")
+            print("5. Eliminar trabajador de sede")
+            print("6. Ver vehículos disponibles")
+            print("7. Ver vehículos ocupados")
+            print("8. Volver")
 
-            op = pedir_opcion("Opción: ", list(range(1, 11)))
+            op = pedir_opcion("Opción: ", list(range(1, 9)))
 
             if op == 1:
                 id_sede = input("ID sede: ")
@@ -172,60 +170,69 @@ class Menu:
                     print("Sede añadida")
                 else:
                     print("No se pudo añadir")
+            elif op ==2:
+                vehiculos = ['coche', 'furgoneta', 'moto']
+                vehiculo = pedir_opcion_texto('Elige un vehiculo entre: coche,furgoneta o moto: ', vehiculos)
 
-            elif op == 2:
-                id_sede = input("ID sede: ")
-                matricula = input("Matrícula: ")
-                marca = input("Marca: ")
-                modelo = input("Modelo: ")
-                color = input("Color: ")
-                deposito = pedir_float("Depósito: ")
-                tipo = input("Tipo: ")
-                consumo = pedir_float("Consumo: ")
-                precio_d = pedir_float("Precio día: ")
-                num_asientos = pedir_entero("Número asientos: ")
+                if vehiculo == 'coche':
+                    id_sede = input("ID sede: ")
+                    matricula = input("Matrícula: ")
+                    marca = input("Marca: ")
+                    modelo = input("Modelo: ")
+                    color = input("Color: ")
+                    deposito = pedir_float("Depósito: ")
+                    tipo = input("Tipo: ")
+                    consumo = pedir_float("Consumo: ")
+                    precio_d = pedir_float("Precio día: ")
+                    num_asientos = pedir_entero("Número asientos: ")
 
-                if self.gestion_sede.añadir_coche(id_sede, matricula, marca, modelo, color, deposito, tipo, consumo, precio_d, num_asientos):
-                    print("Coche añadido")
-                else:
-                    print("No se pudo añadir")
+                    if self.gestion_sede.añadir_coche(id_sede, matricula, marca, modelo, color, deposito, tipo, consumo,
+                                                      precio_d, num_asientos):
+                        print("Coche añadido")
+                    else:
+                        print("No se pudo añadir")
+
+                elif vehiculo == 'furgoneta':
+                    id_sede = input("ID sede: ")
+                    matricula = input("Matrícula: ")
+                    marca = input("Marca: ")
+                    modelo = input("Modelo: ")
+                    color = input("Color: ")
+                    deposito = pedir_float("Depósito: ")
+                    tipo = input("Tipo: ")
+                    consumo = pedir_float("Consumo: ")
+                    precio_d = pedir_float("Precio día: ")
+                    capacidad_carga = pedir_entero("Capacidad de carga: ")
+                    tamaño = input("Tamaño: ")
+
+                    if self.gestion_sede.añadir_furgoneta(id_sede, matricula, marca, modelo, color, deposito, tipo, consumo,
+                                                          precio_d, capacidad_carga, tamaño):
+                        print("Furgoneta añadida")
+                    else:
+                        print("No se pudo añadir")
+
+                elif vehiculo == 'moto':
+                    id_sede = input("ID sede: ")
+                    matricula = input("Matrícula: ")
+                    marca = input("Marca: ")
+                    modelo = input("Modelo: ")
+                    color = input("Color: ")
+                    deposito = pedir_float("Depósito: ")
+                    tipo = input("Tipo: ")
+                    consumo = pedir_float("Consumo: ")
+                    precio_d = pedir_float("Precio día: ")
+                    cilindrada = pedir_entero("Cilindrada: ")
+
+                    if self.gestion_sede.añadir_moto(id_sede, matricula, marca, modelo, color, deposito, tipo, consumo,
+                                                     precio_d, cilindrada):
+                        print("Moto añadida")
+                    else:
+                        print("No se pudo añadir")
+
+
+
 
             elif op == 3:
-                id_sede = input("ID sede: ")
-                matricula = input("Matrícula: ")
-                marca = input("Marca: ")
-                modelo = input("Modelo: ")
-                color = input("Color: ")
-                deposito = pedir_float("Depósito: ")
-                tipo = input("Tipo: ")
-                consumo = pedir_float("Consumo: ")
-                precio_d = pedir_float("Precio día: ")
-                capacidad_carga = pedir_entero("Capacidad de carga: ")
-                tamaño = input("Tamaño: ")
-
-                if self.gestion_sede.añadir_furgoneta(id_sede, matricula, marca, modelo, color, deposito, tipo, consumo, precio_d, capacidad_carga, tamaño):
-                    print("Furgoneta añadida")
-                else:
-                    print("No se pudo añadir")
-
-            elif op == 4:
-                id_sede = input("ID sede: ")
-                matricula = input("Matrícula: ")
-                marca = input("Marca: ")
-                modelo = input("Modelo: ")
-                color = input("Color: ")
-                deposito = pedir_float("Depósito: ")
-                tipo = input("Tipo: ")
-                consumo = pedir_float("Consumo: ")
-                precio_d = pedir_float("Precio día: ")
-                cilindrada = pedir_entero("Cilindrada: ")
-
-                if self.gestion_sede.añadir_moto(id_sede, matricula, marca, modelo, color, deposito, tipo, consumo, precio_d, cilindrada):
-                    print("Moto añadida")
-                else:
-                    print("No se pudo añadir")
-
-            elif op == 5:
                 id_sede = input("ID sede: ")
                 matricula = input("Matrícula: ")
 
@@ -234,7 +241,7 @@ class Menu:
                 else:
                     print("No se pudo eliminar")
 
-            elif op == 6:
+            elif op == 4:
                 id_sede = input("ID sede: ")
                 dni = input("DNI trabajador: ")
 
@@ -243,7 +250,7 @@ class Menu:
                 else:
                     print("No se pudo añadir")
 
-            elif op == 7:
+            elif op == 5:
                 id_sede = input("ID sede: ")
                 dni = input("DNI trabajador: ")
 
@@ -252,7 +259,7 @@ class Menu:
                 else:
                     print("No se pudo eliminar")
 
-            elif op == 8:
+            elif op == 6:
                 id_sede = input("ID sede: ")
                 lista = self.gestion_sede.lista_vehiculos_disponibles(id_sede)
 
@@ -262,7 +269,7 @@ class Menu:
                     for v in lista:
                         print(v.matricula, v.marca, v.modelo)
 
-            elif op == 9:
+            elif op == 7:
                 id_sede = input("ID sede: ")
                 lista = self.gestion_sede.lista_vehiculos_ocupados(id_sede)
 
@@ -272,7 +279,7 @@ class Menu:
                     for v in lista:
                         print(v.matricula, v.marca, v.modelo)
 
-            elif op == 10:
+            elif op == 8:
                 break
 
     def menu_mantenimiento(self)->None:
