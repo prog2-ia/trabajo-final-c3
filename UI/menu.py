@@ -4,7 +4,7 @@ from Servicios.GestionSede import GestionSede
 from Servicios.GestionMantenimiento import GestionMantenimiento
 from Servicios.GestionAlquiler import GestionAlquiler
 from typing import Optional
-from Servicios.funciones_excepciones import pedir_entero, pedir_float, pedir_opcion
+from Servicios.funciones_excepciones import pedir_entero, pedir_float, pedir_opcion, pedir_opcion_texto
 
 
 class Menu:
@@ -106,7 +106,8 @@ class Menu:
             op = pedir_opcion("Opción: ", list(range(1,6)))
 
             if op == 1:
-                cargo = input("Cargo (jefe, vendedor, limpiador): ")
+                cargos=['jefe', 'vendedor', 'limpiador']
+                cargo = pedir_opcion_texto('Elige un cargo entre: jefe,vendedor o limpiador: ',cargos)
                 dni = input("DNI: ")
                 nombre = input("Nombre: ")
                 apellidos = input("Apellidos: ")

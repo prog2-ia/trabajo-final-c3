@@ -23,4 +23,12 @@ def pedir_opcion(mensaje: str, opciones: list[int]) -> int:
             print("Error: introduce un número entero válido")
 
 
-
+def pedir_opcion_texto(mensaje:str,opciones:list[str]) -> str:
+    while True:
+        try:
+            op= str(input(mensaje))
+            if op in opciones:
+                return op
+            print(f'Error: elige una opción entre las siguientes: {opciones}')
+        except ValueError:
+            print('Error: introduce una cadena de texto')
