@@ -13,8 +13,8 @@ if __name__ == "__main__":
     gestor_alquiler = GestionAlquiler(gestor_cliente, gestor_sede, gestor_trabajador)
 
     # Pseudobase de datos
-    gestor_sede.añadir_sede('S1', "Sede Elche", "Elche", "Calle Mayor", "123456789")
-    gestor_sede.añadir_sede('S2', "Sede Madrid", "Madrid", "Avenida Perez Lopez nº2", "674323489")
+    gestor_sede.añadir_sede('S1', "Sede Elche", "Elche", "Calle Mayor", 123456789)
+    gestor_sede.añadir_sede('S2', "Sede Madrid", "Madrid", "Avenida Perez Lopez nº2", 674323489)
 
     gestor_sede.añadir_coche('S1', "1234ABC", "Toyota", "Corolla", "Rojo", 50, "gasolina", 6.5, 40, 5)
     gestor_sede.añadir_coche('S1', "2345BCD", "Seat", "Leon", "Blanco", 50, "diesel", 5.0, 45, 5)
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     gestor_trabajador.contratar("vendedor", "44556677D", "Lucia", "Ramirez Soto", 600666666, 40)
     gestor_trabajador.contratar("vendedor", "22334455V", "Pedro", "Navarro Cruz", 600777777, 40)
 
-    gestor_sede.anadir_trabajador('S1', "12345678Z")
+    gestor_sede.anadir_trabajador('S1', "12345678Z")    
     gestor_sede.anadir_trabajador('S2', "87654321H")
     gestor_sede.anadir_trabajador('S1', "11223344P")
     gestor_sede.anadir_trabajador('S2', "55667788R")

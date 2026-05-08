@@ -14,7 +14,7 @@ class GestionSede:
         self.gestor_trabajador: GestionTrabajador = gestor_trabajador
 
 #Función para añadir una sede comprobando que esta no existiese anteriormente
-    def añadir_sede(self, id_sede: str, nombre: str, ciudad: str, direccion: str, telefono: str) -> bool:
+    def añadir_sede(self, id_sede: str, nombre: str, ciudad: str, direccion: str, telefono: int) -> bool:
         if self.buscar_sede_por_id(id_sede) is None:
             sede = Sede(id_sede, nombre, ciudad, direccion, telefono)
             self.sedes.append(sede)
