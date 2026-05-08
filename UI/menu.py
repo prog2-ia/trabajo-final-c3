@@ -48,8 +48,8 @@ class Menu:
                 dni = input("DNI: ")
                 nombre = input("Nombre: ")
                 apellidos = input("Apellidos: ")
-                telefono = int(input("Teléfono: "))
-                edad = int(input("Edad: "))
+                telefono = pedir_entero('Teléfono: ')
+                edad = pedir_entero("Edad: ")
                 carnet = input("Carnet: ")
 
                 if self.gestion_cliente.añadir_cliente(dni, nombre, apellidos, telefono, edad, carnet):
@@ -414,4 +414,3 @@ class Menu:
             elif op == 6:
                 print("Saliendo...")
                 break
-
