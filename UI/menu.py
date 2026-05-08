@@ -319,11 +319,11 @@ class Menu:
                     "10": "Correa de distribución rota"
                 }
 
-                a = input("Avería: ")
+                a = pedir_opcion("Avería: ",list(range(1,11)))
 
-                if a not in averias:
+                if str(a) not in averias.keys():
                     print("Opción no válida")
-                elif self.gestion_mantenimiento.añadir_avería(averias[a], matricula):
+                elif self.gestion_mantenimiento.añadir_avería(averias[str(a)], matricula):
                     print("Avería añadida")
                 else:
                     print("No se pudo añadir")
@@ -335,7 +335,7 @@ class Menu:
                 if resultado is False:
                     print("No se pudo reparar")
                 else:
-                    print("Vehículo reparado. Coste:", resultado)
+                    print("Vehículo reparado. Coste:", resultado,'€')
 
             elif op == 3:
                 matricula = input("Matrícula: ")
@@ -345,7 +345,7 @@ class Menu:
                     print("Vehículo no encontrado")
                 else:
 
-                    print("Coste:", coste)
+                    print("Coste:", coste,'€')
 
             elif op == 4:
                 break
