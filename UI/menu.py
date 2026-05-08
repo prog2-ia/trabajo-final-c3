@@ -389,7 +389,7 @@ class Menu:
                 codigo = input("Código alquiler: ")
                 alquiler = self.gestion_alquiler.buscar_alquiler_codigo(codigo)
 
-                if alquiler:
+                if alquiler is not None:
                     print(alquiler.codigo, alquiler.cliente.dni, alquiler.vehiculo.matricula)
                 else:
                     print("No encontrado")
