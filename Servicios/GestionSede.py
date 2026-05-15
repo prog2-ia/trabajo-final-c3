@@ -1,4 +1,6 @@
 from typing import Optional
+
+from Entidades import vehiculo
 from Entidades.sede import Sede
 from Entidades.coche import Coche
 from Entidades.furgoneta import Furgoneta
@@ -10,9 +12,16 @@ from Servicios.GestionFicheros import GestionFicheros
 
 class GestionSede:
     ruta='Persistencias/sede_datos'
+    ruta_vehiculos = {
+        Coche: 'Persistencias/vehiculos/coches_datos',
+        Furgoneta: 'Persistencias/vehiculos/furgonetas_datos',
+        Moto: 'Persistencias/vehiculos/motos_datos'
+    }
     def __init__(self, gestor_trabajador: GestionTrabajador) -> None:
         self.sedes: list[Sede] = []
         self.gestor_trabajador: GestionTrabajador = gestor_trabajador
+
+
 
 #Función para añadir una sede comprobando que esta no existiese anteriormente
     def añadir_sede(self, id_sede: str, nombre: str, ciudad: str, direccion: str, telefono: int) -> bool:
@@ -32,26 +41,41 @@ class GestionSede:
                 return sede
         return None
 
-    def buscar_vehiculo(self, matricula:str)-> Optional[Vehiculo]:
-        for sede in self.sedes:
-            for vehiculo in sede.vehiculos:
+    def buscar_vehiculo(self, matricula: str) -> Optional[Vehiculo]:
+        for ruta in type(self).ruta_vehiculos.values():
+            vehiculos = GestionFicheros.leer_persistencias(ruta)
+
+            for vehiculo in vehiculos:
                 if vehiculo.matricula == matricula:
                     return vehiculo
+
         return None
 
-#Función que añade un vehiculo comprobando que la sede dada exista y que el vehiculo dado sea nuevo
     def _añadir_vehiculo(self, id_sede: str, clase_vehiculo: type, *args: object) -> bool:
         sede = self.buscar_sede_por_id(id_sede)
 
         if sede is None:
             return False
 
-        matricula:str=str( args[0])
+        matricula = str(args[0])
+
         if self.buscar_vehiculo(matricula) is not None:
             return False
 
         vehiculo = clase_vehiculo(*args)
+
+        try:
+            ruta = type(self).ruta_vehiculos[clase_vehiculo]
+        except KeyError:
+            return False
+
+        guardado = GestionFicheros.guardar_en_persistencias(vehiculo, ruta)
+
+        if guardado is False:
+            return False
+
         sede.vehiculos.append(vehiculo)
+
         return True
 
     def añadir_coche(self, id_sede: str, matricula: str, marca: str, modelo: str, color: str,
@@ -67,7 +91,8 @@ class GestionSede:
                          deposito: float, tipo: str, consumo: float, precio_d: float,
                          capacidad_carga: int, tamaño: str) -> bool:
         return self._añadir_vehiculo(
-            id_sede,Furgoneta,
+            id_sede,
+            Furgoneta,
             matricula, marca, modelo, color,
             deposito, tipo, consumo, precio_d,
             capacidad_carga, tamaño
@@ -81,7 +106,6 @@ class GestionSede:
             matricula, marca, modelo, color,
             deposito, tipo, consumo, precio_d, cilindrada
         )
-
     def eleminar_vehiculo(self, id_sede: str, matricula: str) -> bool:
         vehiculo = self.buscar_vehiculo(matricula)
         sede = self.buscar_sede_por_id(id_sede)
@@ -167,4 +191,5 @@ class GestionSede:
                 ocupados.append(vehiculo)
 
         return ocupados
+
 
