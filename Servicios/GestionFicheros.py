@@ -1,27 +1,36 @@
-
 import os
 import pickle
 
 
 class GestionFicheros:
-    CARPETA = "Persistencias"
-
-    FICHEROS = {
-        "clientes": "clientes.dat",
-        "sedes": "sedes.dat",
-        "trabajadores": "trabajadores.dat",
-        "alquileres": "alquileres.dat"
-    }
 
     @staticmethod
-    def crear_ficheros():
-        os.makedirs(GestionFicheros.CARPETA, exist_ok=True)
+    def guardar_en_persistencias(dato, ruta):
+        try:
+            with open(ruta, 'ab') as persistencia:
+                pickle.dump(dato, persistencia)
 
-        for nombre_fichero in GestionFicheros.FICHEROS.values():
-            ruta = os.path.join(GestionFicheros.CARPETA, nombre_fichero)
+            return True
 
-            if not os.path.exists(ruta):
-                with open(ruta, "wb") as fichero:
-                    pickle.dump([], fichero)
-x=GestionFicheros()
-x.crear_ficheros()
+        except FileNotFoundError:
+            return False
+
+    @staticmethod
+    def leer_persistencias(ruta):
+        datos = []
+
+        try:
+            with open(ruta, 'rb') as persistencia:
+                while True:
+                    try:
+                        dato = pickle.load(persistencia)
+                        datos.append(dato)
+                    except EOFError:
+                        break
+
+            return datos
+
+        except FileNotFoundError:
+            return []
+
+
