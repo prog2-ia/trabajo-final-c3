@@ -6,9 +6,10 @@ from Entidades.moto import Moto
 from Entidades.vehiculo import Vehiculo
 from Entidades.trabajador import Trabajador
 from Servicios.GestionTrabajador import GestionTrabajador
-
+from Servicios.GestionFicheros import GestionFicheros
 
 class GestionSede:
+    ruta='Persistencias/sede_datos'
     def __init__(self, gestor_trabajador: GestionTrabajador) -> None:
         self.sedes: list[Sede] = []
         self.gestor_trabajador: GestionTrabajador = gestor_trabajador
@@ -17,12 +18,16 @@ class GestionSede:
     def añadir_sede(self, id_sede: str, nombre: str, ciudad: str, direccion: str, telefono: int) -> bool:
         if self.buscar_sede_por_id(id_sede) is None:
             sede = Sede(id_sede, nombre, ciudad, direccion, telefono)
-            self.sedes.append(sede)
-            return True
+            if GestionFicheros.guardar_en_persistencias(sede,type(self).ruta):
+                return True
         return False
 
     def buscar_sede_por_id(self, id_sede:str)-> Optional[Sede]:
-        for sede in self.sedes:
+        sedes=GestionFicheros.leer_persistencias(type(self).ruta)
+        if sedes == []:
+            return None
+
+        for sede in sedes:
             if sede.idSede == id_sede:
                 return sede
         return None
@@ -162,3 +167,4 @@ class GestionSede:
                 ocupados.append(vehiculo)
 
         return ocupados
+

@@ -34,3 +34,26 @@ class GestionFicheros:
             return []
 
 
+    @staticmethod
+    def resetear_persistencias():
+        rutas = [
+            "Persistencias/vehiculos/coches_datos",
+            "Persistencias/vehiculos/furgonetas_datos",
+            "Persistencias/vehiculos/motos_datos",
+            "Persistencias/alquileres_datos",
+            "Persistencias/clientes_datos",
+            "Persistencias/sede_datos",
+            "Persistencias/trabajadores_datos"
+        ]
+
+        for ruta in rutas:
+            carpeta = os.path.dirname(ruta)
+
+            if carpeta != "":
+                os.makedirs(carpeta, exist_ok=True)
+
+            with open(ruta, "wb") as archivo:
+                pass
+
+        return True
+
