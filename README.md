@@ -9,15 +9,6 @@ Este progrma implementa un sistema de gestion para una empresa de alquiler de co
 ## Requisitos
 
 - Python 3.12 o superior
-- `pytest` para ejecutar tests (opcional)
-
-## Instalación rápida
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -U pip pytest
-```
 
 ## Cómo ejecutar la aplicación
 
