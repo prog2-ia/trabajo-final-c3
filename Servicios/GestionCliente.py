@@ -1,8 +1,10 @@
 from typing import Optional
 from Entidades.cliente import Cliente
+from Servicios.GestionFicheros import GestionFicheros
 
 
 class GestionCliente:
+    ruta = 'Persistencias/cliente_datos'
     def __init__(self)->None:
         self.clientes:list[Cliente]=[]
 
@@ -11,7 +13,8 @@ class GestionCliente:
         if self.buscar_cliente(dni) is None:
             cliente=Cliente(dni,nombre,apellidos,telefono,edad,carnet)
             self.clientes.append(cliente)
-            return True
+            if GestionFicheros.guardar_en_persistencias(cliente,type(self).ruta):
+                return True
         return False
 
 #Función que elimina un cliente de la lista de clientes
@@ -23,7 +26,10 @@ class GestionCliente:
         return True
 
     def buscar_cliente(self,dni:str)->Optional[Cliente]:
-        for cliente in self.clientes:
+        clientes = GestionFicheros.leer_persistencias(type(self).ruta)
+        if clientes == []:
+            return None
+        for cliente in clientes:
             if cliente.dni==dni:
                 return cliente
         return None
